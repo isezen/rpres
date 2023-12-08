@@ -1,0 +1,2774 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../presentation_files/libs/clipboard/clipboard.min.js"></script>
+<script src="../presentation_files/libs/quarto-html/tabby.min.js"></script>
+<script src="../presentation_files/libs/quarto-html/popper.min.js"></script>
+<script src="../presentation_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../presentation_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../presentation_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../presentation_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../presentation_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.3.450">
+
+  <meta name="author" content="Ismail SEZEN">
+  <meta name="dcterms.date" content="2023-12-08">
+  <title>Introduction to R</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../presentation_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../presentation_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../presentation_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="../presentation_files/mystyle.css">
+  <link href="../presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../presentation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../presentation_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../presentation_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../presentation_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Introduction to R</h1>
+  <p class="subtitle">Data Manipulation <br> with xts</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Ismail SEZEN 
+</div>
+        <p class="quarto-title-affiliation">
+            </p><p>Istanbul Technical University</p>
+            <p>Eurasia Institute of Earth Sciences</p>
+          <p></p>
+    </div>
+</div>
+
+  <p class="date">December 8, 2023</p>
+</section>
+<section>
+<section id="data-manipulation-with-xts" class="title-slide slide level2 center">
+<h2>Data Manipulation with xts</h2>
+<ul>
+<li>Irregularr to Regular time-series</li>
+<li>Imputation of missing values</li>
+<li>Aggregation in time</li>
+<li>Averages for the same months/days/hours
+<ul>
+<li>Using sapply</li>
+<li>Using aggregate</li>
+<li>Using split-Apply-Combine</li>
+</ul></li>
+</ul>
+<div class="footer">
+<p>Data Manipulation with xts</p>
+</div>
+<!----------------------------------------------------------------------------->
+</section>
+<section id="irregular-to-regular-time-series" class="title-slide slide level3 center">
+<h3>Irregular to Regular time-series</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Sample irregular time series</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>endp <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">10</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a>ir_dates <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2023-01-01"</span>) <span class="sc">+</span> endp</span>
+<span id="cb1-5"><a href="#cb1-5"></a>ir_data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(ir_dates) <span class="sc">*</span> <span class="dv">3</span>),</span>
+<span id="cb1-6"><a href="#cb1-6"></a>                  <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb1-7"><a href="#cb1-7"></a>ir_xts <span class="ot">&lt;-</span> <span class="fu">xts</span>(ir_data, <span class="at">order.by =</span> ir_dates)</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">print</span>(ir_xts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  [,1]       [,2]       [,3]
+2023-01-01 -0.56047565  1.7150650  1.2240818
+2023-01-02 -0.23017749  0.4609162  0.3598138
+2023-01-04  1.55870831 -1.2650612  0.4007715
+2023-01-08  0.07050839 -0.6868529  0.1106827
+2023-01-11  0.12928774 -0.4456620 -0.5558411</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(tdif <span class="ot">&lt;-</span> <span class="fu">unclass</span>(<span class="fu">periodicity</span>(ir_xts))<span class="sc">$</span>difftime)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time difference of 216000 days</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(tdif<span class="sc">/</span><span class="dv">60</span><span class="sc">/</span><span class="dv">60</span><span class="sc">/</span><span class="dv">24</span>) <span class="co"># How?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time difference of 2.5 days</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tdif2 <span class="ot">&lt;-</span> <span class="fu">diff</span>(endp)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(tdif2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.5</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Define the range for the regular series</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>reg_dates <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">start</span>(ir_xts),</span>
+<span id="cb9-3"><a href="#cb9-3"></a>                 <span class="fu">end</span>(ir_xts), <span class="at">by =</span> <span class="st">"day"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="co"># Convert to a regular time series by merging</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>merged_xts <span class="ot">&lt;-</span> <span class="fu">merge</span>(ir_xts, <span class="fu">xts</span>(, reg_dates))</span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="fu">print</span>(merged_xts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                ir_xts   ir_xts.1   ir_xts.2
+2023-01-01 -0.56047565  1.7150650  1.2240818
+2023-01-02 -0.23017749  0.4609162  0.3598138
+2023-01-03          NA         NA         NA
+2023-01-04  1.55870831 -1.2650612  0.4007715
+2023-01-05          NA         NA         NA
+2023-01-06          NA         NA         NA
+2023-01-07          NA         NA         NA
+2023-01-08  0.07050839 -0.6868529  0.1106827
+2023-01-09          NA         NA         NA
+2023-01-10          NA         NA         NA
+2023-01-11  0.12928774 -0.4456620 -0.5558411</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(tdif <span class="ot">&lt;-</span> <span class="fu">unclass</span>(<span class="fu">periodicity</span>(merged_xts))<span class="sc">$</span>difftime)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time difference of 86400 days</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(tdif<span class="sc">/</span><span class="dv">60</span><span class="sc">/</span><span class="dv">60</span><span class="sc">/</span><span class="dv">24</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time difference of 1 days</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<p>Data Manipulation with xts</p>
+</div>
+<!----------------------------------------------------------------------------->
+</section>
+
+<section id="imputation-of-missing-values" class="title-slide slide level3 center">
+<h3>Imputation of missing values</h3>
+<p>What if I want to fill the missing values with a method? Which method do you think is the best?</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(merged_xts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                ir_xts   ir_xts.1   ir_xts.2
+2023-01-01 -0.56047565  1.7150650  1.2240818
+2023-01-02 -0.23017749  0.4609162  0.3598138
+2023-01-03          NA         NA         NA
+2023-01-04  1.55870831 -1.2650612  0.4007715
+2023-01-05          NA         NA         NA
+2023-01-06          NA         NA         NA
+2023-01-07          NA         NA         NA
+2023-01-08  0.07050839 -0.6868529  0.1106827
+2023-01-09          NA         NA         NA
+2023-01-10          NA         NA         NA
+2023-01-11  0.12928774 -0.4456620 -0.5558411</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(reg_xts1 <span class="ot">&lt;-</span> <span class="fu">na.approx</span>(merged_xts))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                ir_xts   ir_xts.1   ir_xts.2
+2023-01-01 -0.56047565  1.7150650  1.2240818
+2023-01-02 -0.23017749  0.4609162  0.3598138
+2023-01-03  0.66426541 -0.4020725  0.3802926
+2023-01-04  1.55870831 -1.2650612  0.4007715
+2023-01-05  1.18665833 -1.1205091  0.3282493
+2023-01-06  0.81460835 -0.9759570  0.2557271
+2023-01-07  0.44255837 -0.8314049  0.1832049
+2023-01-08  0.07050839 -0.6868529  0.1106827
+2023-01-09  0.09010151 -0.6064559 -0.1114919
+2023-01-10  0.10969462 -0.5260589 -0.3336665
+2023-01-11  0.12928774 -0.4456620 -0.5558411</code></pre>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>na.trim:</strong> Removes leading and trailing NAs.</li>
+<li><strong>na.fill:</strong> Replaces NA values with a constant value.</li>
+<li><strong>na.approx:</strong> Linear interpolation</li>
+<li><strong>na.locf:</strong> Last observation carried forward</li>
+<li><strong>na.spline:</strong> Spline interpolation</li>
+<li><strong>na.aggregate:</strong> Replaces NA values by applying a statistical function (like mean, median) over a window.</li>
+<li><strong>na.kalman:</strong> Kalman smoothing and state estimation</li>
+<li><strong>na.interp:</strong> Linear interpolation (<em>forecast package</em>)</li>
+</ul>
+<div class="footer">
+<p>Data Manipulation with xts</p>
+</div>
+<!----------------------------------------------------------------------------->
+</section>
+
+<section id="aggregation-in-timei" class="title-slide slide level3 center">
+<h3>Aggregation in time/I</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># Sample xts object</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="co"># A week of hourly data</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>dates <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">as.POSIXct</span>(<span class="st">"2023-01-01"</span>),</span>
+<span id="cb19-5"><a href="#cb19-5"></a>             <span class="at">by =</span> <span class="st">"hour"</span>, <span class="at">length.out =</span> <span class="dv">168</span>)</span>
+<span id="cb19-6"><a href="#cb19-6"></a>data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">168</span><span class="sc">*</span><span class="dv">2</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb19-7"><a href="#cb19-7"></a><span class="fu">colnames</span>(data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Temperature"</span>, <span class="st">"Humidity"</span>)</span>
+<span id="cb19-8"><a href="#cb19-8"></a>xts_data <span class="ot">&lt;-</span> <span class="fu">xts</span>(data, <span class="at">order.by =</span> dates)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                    Temperature Humidity
+2023-01-01                -0.56    0.517
+2023-01-01 01:00:00       -0.23    0.369
+2023-01-01 02:00:00       1.559   -0.215
+2023-01-01 03:00:00       0.071    0.065
+                            ...      ...
+2023-01-07 20:00:00      -0.417   -0.722
+2023-01-07 21:00:00       0.298    1.519
+2023-01-07 22:00:00       0.637    0.377
+2023-01-07 23:00:00      -0.484   -2.052</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Daily aggregation - mean</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>(daily_mean <span class="ot">&lt;-</span> <span class="fu">apply.daily</span>(xts_data, mean))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    Temperature     Humidity
+2023-01-01 23:00:00 -0.00867576  0.050401573
+2023-01-02 23:00:00  0.05132499  0.096387613
+2023-01-03 23:00:00  0.05600387 -0.185501155
+2023-01-04 23:00:00  0.17562893 -0.005352399
+2023-01-05 23:00:00 -0.19707447  0.214862964
+2023-01-06 23:00:00 -0.14225871  0.273350508
+2023-01-07 23:00:00  0.04996157  0.044167288</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># Monthly aggregation - sum</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>(monthly_sum <span class="ot">&lt;-</span> <span class="fu">apply.monthly</span>(xts_data, colSums))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    Temperature Humidity
+2023-01-07 23:00:00  -0.3621502 11.71959</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># Yearly aggregation - maximum</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>(yearly_max <span class="ot">&lt;-</span> <span class="fu">apply.yearly</span>(xts_data, max))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                       [,1]
+2023-01-07 23:00:00 3.24104</code></pre>
+</div>
+</div>
+<ul>
+<li>Why number of columns is 1 in the above example?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># Custom period aggregation - median</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="co"># Define a custom endpoint (e.g., every 3 days)</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>ep_3day <span class="ot">&lt;-</span> <span class="fu">endpoints</span>(</span>
+<span id="cb27-4"><a href="#cb27-4"></a>  xts_data, <span class="at">on =</span> <span class="st">"days"</span>, <span class="at">k =</span> <span class="dv">3</span>)</span>
+<span id="cb27-5"><a href="#cb27-5"></a>(three_day_median <span class="ot">&lt;-</span> <span class="fu">period.apply</span>(</span>
+<span id="cb27-6"><a href="#cb27-6"></a>  xts_data, <span class="at">INDEX =</span> ep_3day,</span>
+<span id="cb27-7"><a href="#cb27-7"></a>  <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">apply</span>(x, <span class="dv">2</span>, median)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    Temperature    Humidity
+2023-01-02 23:00:00 -0.13491449 -0.04404769
+2023-01-05 23:00:00 -0.03570861 -0.08944235
+2023-01-07 23:00:00 -0.18777240  0.19002291</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<p>Data Manipulation with xts</p>
+</div>
+<!----------------------------------------------------------------------------->
+</section>
+
+<section id="aggregation-in-timeii" class="title-slide slide level3 center">
+<h3>Aggregation in time/II</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># Sample daily data for 2 years</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a>dates <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"2023-01-01"</span>), <span class="at">by =</span> <span class="st">"day"</span>, <span class="at">length.out =</span> <span class="dv">365</span> <span class="sc">*</span> <span class="dv">2</span>)</span>
+<span id="cb29-4"><a href="#cb29-4"></a>data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(dates)<span class="sc">*</span><span class="dv">2</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="fu">colnames</span>(data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"V1"</span>, <span class="st">"V2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>(daily_xts <span class="ot">&lt;-</span> <span class="fu">xts</span>(data, <span class="at">order.by =</span> dates))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>               V1     V2
+2023-01-01  -0.56  1.739
+2023-01-02  -0.23  0.881
+2023-01-03  1.559 -1.944
+2023-01-04  0.071    1.4
+              ...    ...
+2024-12-27  0.564  0.869
+2024-12-28  0.189  1.369
+2024-12-29 -0.733  0.763
+2024-12-30  0.986  0.421</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>(yearly_max <span class="ot">&lt;-</span> <span class="fu">apply.yearly</span>(</span>
+<span id="cb32-2"><a href="#cb32-2"></a>  daily_xts, <span class="cf">function</span>(x) <span class="fu">apply</span>(x, <span class="dv">2</span>, max)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                V1       V2
+2023-12-31 3.24104 2.832226
+2024-12-30 2.45806 3.390371</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># Aggregate to monthly data</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a>(monthly_xts <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(</span>
+<span id="cb34-3"><a href="#cb34-3"></a>  daily_xts, as.yearmon,</span>
+<span id="cb34-4"><a href="#cb34-4"></a>  <span class="cf">function</span>(x) <span class="fu">sum</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  V1         V2
+Jan 2023 -0.98664846 12.6834366
+Feb 2023  4.70774431 -2.5136996
+Mar 2023  0.94855332  1.8912961
+Apr 2023 -2.81666794 -0.6887207
+May 2023 -4.71967317 10.0758476
+Jun 2023  2.76043432  4.1047099
+Jul 2023  1.86744608  3.5306645
+Aug 2023 -2.84718591 -9.2642606
+Sep 2023  3.80956188 -2.7471585
+Oct 2023  4.14987450  9.5701874
+Nov 2023  6.15883915  5.9951731
+Dec 2023 -1.39895533 -3.6808251
+Jan 2024 -3.37955284  3.9219647
+Feb 2024 -3.03685649 -1.3698859
+Mar 2024  0.09673759 -4.1810506
+Apr 2024  9.86110105  2.9938479
+May 2024 -2.47356975 -9.6702701
+Jun 2024  3.42622682 11.3971803
+Jul 2024  3.39140470 -5.0041895
+Aug 2024 -8.74519854 -2.1278545
+Sep 2024 -6.65261084  0.5834902
+Oct 2024  3.82526389 -2.5725853
+Nov 2024 -9.84545445  6.1346518
+Dec 2024 -1.09879726  0.3605361</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">class</span>(monthly_xts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "zoo"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<p>Data Manipulation with xts</p>
+</div>
+<!----------------------------------------------------------------------------->
+</section>
+
+<section id="aggregation-in-timeiii" class="title-slide slide level3 center">
+<h3>Aggregation in time/III</h3>
+<p><strong>Rolling aggregation</strong></p>
+<p>Rolling mean with a 24-hour window and calculate FUN at every (by-th) time point.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p style="text-align: center;">
+Align right
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>(rolling_mean1 <span class="ot">&lt;-</span> <span class="fu">rollapply</span>(</span>
+<span id="cb38-2"><a href="#cb38-2"></a>  xts_data, <span class="at">width =</span> <span class="dv">24</span>, <span class="at">by =</span> <span class="dv">1</span>,</span>
+<span id="cb38-3"><a href="#cb38-3"></a>  <span class="at">align =</span> <span class="st">'right'</span>, <span class="at">FUN =</span> mean))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                      Temperature      Humidity
+2023-01-01 00:00:00            NA            NA
+2023-01-01 01:00:00            NA            NA
+2023-01-01 02:00:00            NA            NA
+2023-01-01 03:00:00            NA            NA
+2023-01-01 04:00:00            NA            NA
+2023-01-01 05:00:00            NA            NA
+2023-01-01 06:00:00            NA            NA
+2023-01-01 07:00:00            NA            NA
+2023-01-01 08:00:00            NA            NA
+2023-01-01 09:00:00            NA            NA
+2023-01-01 10:00:00            NA            NA
+2023-01-01 11:00:00            NA            NA
+2023-01-01 12:00:00            NA            NA
+2023-01-01 13:00:00            NA            NA
+2023-01-01 14:00:00            NA            NA
+2023-01-01 15:00:00            NA            NA
+2023-01-01 16:00:00            NA            NA
+2023-01-01 17:00:00            NA            NA
+2023-01-01 18:00:00            NA            NA
+2023-01-01 19:00:00            NA            NA
+2023-01-01 20:00:00            NA            NA
+2023-01-01 21:00:00            NA            NA
+2023-01-01 22:00:00            NA            NA
+2023-01-01 23:00:00 -0.0086757604  0.0504015729
+2023-01-02 00:00:00 -0.0113659113  0.0328066348
+2023-01-02 01:00:00 -0.0720540705 -0.0198736938
+2023-01-02 02:00:00 -0.1020924567 -0.0655162365
+2023-01-02 03:00:00 -0.0986397598  0.0149804448
+2023-01-02 04:00:00 -0.1514491211  0.0414294480
+2023-01-02 05:00:00 -0.1706678739 -0.0993923545
+2023-01-02 06:00:00 -0.1721033732 -0.0939685970
+2023-01-02 07:00:00 -0.1316871336 -0.0976970894
+2023-01-02 08:00:00 -0.0657713622 -0.0076545082
+2023-01-02 09:00:00 -0.0106132181  0.0340926679
+2023-01-02 10:00:00 -0.0273840813  0.0048564789
+2023-01-02 11:00:00 -0.0136829802  0.0465881203
+2023-01-02 12:00:00 -0.0073018884  0.0736292114
+2023-01-02 13:00:00 -0.0144933228  0.0011528751
+2023-01-02 14:00:00 -0.0040817198 -0.0171368103
+2023-01-02 15:00:00 -0.0943893923 -0.0058494939
+2023-01-02 16:00:00 -0.1440792863  0.0727832993
+2023-01-02 17:00:00 -0.0708001247  0.0787477897
+2023-01-02 18:00:00 -0.1527481352  0.0374696625
+2023-01-02 19:00:00 -0.0426753280  0.0440925849
+2023-01-02 20:00:00  0.0521490763  0.0640268388
+2023-01-02 21:00:00  0.0144351735  0.0633280132
+2023-01-02 22:00:00  0.0403984907  0.0130383273
+2023-01-02 23:00:00  0.0513249855  0.0963876125
+2023-01-03 00:00:00  0.1098668349  0.0740648315
+2023-01-03 01:00:00  0.1766720118  0.0812438893
+2023-01-03 02:00:00  0.1523191563  0.0843492399
+2023-01-03 03:00:00  0.1447391616 -0.0523978062
+2023-01-03 04:00:00  0.1903752649 -0.1013429022
+2023-01-03 05:00:00  0.1951580717 -0.0234571864
+2023-01-03 06:00:00  0.1679816048  0.0482517326
+2023-01-03 07:00:00  0.2434625251  0.1271295842
+2023-01-03 08:00:00  0.1416342557  0.0203600989
+2023-01-03 09:00:00  0.1294042666 -0.0318341944
+2023-01-03 10:00:00  0.1003323150 -0.0501446696
+2023-01-03 11:00:00  0.0806365365 -0.1026618455
+2023-01-03 12:00:00  0.0733749460 -0.0485372436
+2023-01-03 13:00:00  0.0550244567 -0.0710099804
+2023-01-03 14:00:00  0.0538892601  0.0433190531
+2023-01-03 15:00:00  0.0273015775  0.0643314561
+2023-01-03 16:00:00  0.0115897338  0.0044827628
+2023-01-03 17:00:00  0.0328999805 -0.0240380530
+2023-01-03 18:00:00  0.1043002359 -0.0529394666
+2023-01-03 19:00:00  0.0161355801 -0.1179687817
+2023-01-03 20:00:00  0.0042316414 -0.1769438345
+2023-01-03 21:00:00  0.1364480276 -0.1379835747
+2023-01-03 22:00:00  0.1327752638 -0.0831164291
+2023-01-03 23:00:00  0.0560038670 -0.1855011549
+2023-01-04 00:00:00  0.0654110923 -0.1999786030
+2023-01-04 01:00:00  0.0393347716 -0.1907758008
+2023-01-04 02:00:00  0.0001128079 -0.0769285596
+2023-01-04 03:00:00  0.0440343964 -0.0707863887
+2023-01-04 04:00:00  0.0339551235 -0.0543313102
+2023-01-04 05:00:00 -0.0739332097 -0.0008156433
+2023-01-04 06:00:00 -0.0569717736 -0.0512666027
+2023-01-04 07:00:00 -0.1259451889 -0.1374094801
+2023-01-04 08:00:00 -0.0611736477 -0.1499558192
+2023-01-04 09:00:00 -0.0694792038 -0.1322179008
+2023-01-04 10:00:00 -0.0900839653 -0.1185098344
+2023-01-04 11:00:00 -0.0722325078 -0.1120372595
+2023-01-04 12:00:00 -0.0972377597 -0.1632275817
+2023-01-04 13:00:00 -0.0624833673 -0.1171405306
+2023-01-04 14:00:00 -0.0028981008 -0.1320065804
+2023-01-04 15:00:00  0.0576751023 -0.1319334770
+2023-01-04 16:00:00  0.0887525873 -0.0958392824
+2023-01-04 17:00:00  0.1239725447 -0.0387858733
+2023-01-04 18:00:00  0.1466931313 -0.0195880068
+2023-01-04 19:00:00  0.1673344951 -0.0285832514
+2023-01-04 20:00:00  0.1388538396 -0.0426745818
+2023-01-04 21:00:00  0.0272708912 -0.0805434509
+2023-01-04 22:00:00  0.1044243751 -0.0920913639
+2023-01-04 23:00:00  0.1756289288 -0.0053523987
+2023-01-05 00:00:00  0.2248620317  0.1230518073
+2023-01-05 01:00:00  0.3182708395  0.2084592981
+2023-01-05 02:00:00  0.3371170169  0.1405754800
+2023-01-05 03:00:00  0.2516173390  0.1147744894
+2023-01-05 04:00:00  0.2338826075  0.1060358115
+2023-01-05 05:00:00  0.2954493334  0.0304877032
+2023-01-05 06:00:00  0.2776161935  0.0699038652
+2023-01-05 07:00:00  0.2689223919  0.1666692266
+2023-01-05 08:00:00  0.2290314439  0.2228808459
+2023-01-05 09:00:00  0.2111019386  0.1445169156
+2023-01-05 10:00:00  0.1938417537  0.1955688288
+2023-01-05 11:00:00  0.0974951502  0.2003737933
+2023-01-05 12:00:00  0.0908393186  0.2219871239
+2023-01-05 13:00:00  0.1153065955  0.2213227293
+2023-01-05 14:00:00  0.0456321798  0.1725584790
+2023-01-05 15:00:00  0.0528314644  0.1772768163
+2023-01-05 16:00:00 -0.0009998323  0.0627653749
+2023-01-05 17:00:00 -0.0511818983  0.0671712853
+2023-01-05 18:00:00 -0.0709359255  0.0879907213
+2023-01-05 19:00:00 -0.0812377421  0.1407928204
+2023-01-05 20:00:00 -0.0867817229  0.1674287299
+2023-01-05 21:00:00 -0.0873150535  0.1934249423
+2023-01-05 22:00:00 -0.1794132532  0.2006693188
+2023-01-05 23:00:00 -0.1970744700  0.2148629642
+2023-01-06 00:00:00 -0.2833114032  0.1101909078
+2023-01-06 01:00:00 -0.3866482882  0.0527110880
+2023-01-06 02:00:00 -0.3972673334  0.1069417062
+2023-01-06 03:00:00 -0.3651703039  0.2240545570
+2023-01-06 04:00:00 -0.2587424469  0.2879730143
+2023-01-06 05:00:00 -0.2966105140  0.2601948799
+2023-01-06 06:00:00 -0.2765239119  0.3084227852
+2023-01-06 07:00:00 -0.2587946015  0.2710966561
+2023-01-06 08:00:00 -0.2592211876  0.3203692568
+2023-01-06 09:00:00 -0.2603162027  0.3222180761
+2023-01-06 10:00:00 -0.1674222307  0.2876905986
+2023-01-06 11:00:00 -0.0791119811  0.3583769231
+2023-01-06 12:00:00 -0.0615511710  0.3212917195
+2023-01-06 13:00:00 -0.1174467311  0.2868233801
+2023-01-06 14:00:00 -0.1790259085  0.2298773189
+2023-01-06 15:00:00 -0.1572187047  0.1849944746
+2023-01-06 16:00:00 -0.1506669282  0.2362576231
+2023-01-06 17:00:00 -0.1175207000  0.2193694235
+2023-01-06 18:00:00 -0.0596166848  0.1193595457
+2023-01-06 19:00:00 -0.1323269566  0.1392608815
+2023-01-06 20:00:00 -0.1074891173  0.1858663205
+2023-01-06 21:00:00 -0.0917179291  0.2651802943
+2023-01-06 22:00:00 -0.1218195879  0.3101868162
+2023-01-06 23:00:00 -0.1422587072  0.2733505077
+2023-01-07 00:00:00 -0.2138913227  0.2105305069
+2023-01-07 01:00:00 -0.1965343188  0.1784650031
+2023-01-07 02:00:00 -0.2370009081  0.1151137393
+2023-01-07 03:00:00 -0.1976672012  0.1005030260
+2023-01-07 04:00:00 -0.1869902455  0.0483807574
+2023-01-07 05:00:00 -0.2134519361  0.0199982313
+2023-01-07 06:00:00 -0.1904372580  0.0067462721
+2023-01-07 07:00:00 -0.1616422000  0.0419417063
+2023-01-07 08:00:00 -0.1077230662 -0.0259508592
+2023-01-07 09:00:00 -0.1467675879  0.0810912781
+2023-01-07 10:00:00 -0.2119343990  0.0244347000
+2023-01-07 11:00:00 -0.2424302068 -0.0001108947
+2023-01-07 12:00:00 -0.2206903480  0.0079028474
+2023-01-07 13:00:00 -0.2186045948  0.0677542845
+2023-01-07 14:00:00 -0.0923454028  0.1043258157
+2023-01-07 15:00:00 -0.1550919891  0.1745538988
+2023-01-07 16:00:00 -0.0503690084  0.2484154466
+2023-01-07 17:00:00 -0.1249158633  0.2349200682
+2023-01-07 18:00:00 -0.2569683139  0.3612437821
+2023-01-07 19:00:00 -0.0617627682  0.3028931792
+2023-01-07 20:00:00 -0.1083728484  0.2212982006
+2023-01-07 21:00:00 -0.0850218033  0.1997000212
+2023-01-07 22:00:00  0.0070079397  0.1612088537
+2023-01-07 23:00:00  0.0499615659  0.0441672877</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p style="text-align: center;">
+Align left
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>(rolling_mean1 <span class="ot">&lt;-</span> <span class="fu">rollapply</span>(</span>
+<span id="cb40-2"><a href="#cb40-2"></a>  xts_data, <span class="at">width =</span> <span class="dv">24</span>, <span class="at">by =</span> <span class="dv">1</span>,</span>
+<span id="cb40-3"><a href="#cb40-3"></a>  <span class="at">align =</span> <span class="st">'left'</span>, <span class="at">FUN =</span> mean))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                      Temperature      Humidity
+2023-01-01 00:00:00 -0.0086757604  0.0504015729
+2023-01-01 01:00:00 -0.0113659113  0.0328066348
+2023-01-01 02:00:00 -0.0720540705 -0.0198736938
+2023-01-01 03:00:00 -0.1020924567 -0.0655162365
+2023-01-01 04:00:00 -0.0986397598  0.0149804448
+2023-01-01 05:00:00 -0.1514491211  0.0414294480
+2023-01-01 06:00:00 -0.1706678739 -0.0993923545
+2023-01-01 07:00:00 -0.1721033732 -0.0939685970
+2023-01-01 08:00:00 -0.1316871336 -0.0976970894
+2023-01-01 09:00:00 -0.0657713622 -0.0076545082
+2023-01-01 10:00:00 -0.0106132181  0.0340926679
+2023-01-01 11:00:00 -0.0273840813  0.0048564789
+2023-01-01 12:00:00 -0.0136829802  0.0465881203
+2023-01-01 13:00:00 -0.0073018884  0.0736292114
+2023-01-01 14:00:00 -0.0144933228  0.0011528751
+2023-01-01 15:00:00 -0.0040817198 -0.0171368103
+2023-01-01 16:00:00 -0.0943893923 -0.0058494939
+2023-01-01 17:00:00 -0.1440792863  0.0727832993
+2023-01-01 18:00:00 -0.0708001247  0.0787477897
+2023-01-01 19:00:00 -0.1527481352  0.0374696625
+2023-01-01 20:00:00 -0.0426753280  0.0440925849
+2023-01-01 21:00:00  0.0521490763  0.0640268388
+2023-01-01 22:00:00  0.0144351735  0.0633280132
+2023-01-01 23:00:00  0.0403984907  0.0130383273
+2023-01-02 00:00:00  0.0513249855  0.0963876125
+2023-01-02 01:00:00  0.1098668349  0.0740648315
+2023-01-02 02:00:00  0.1766720118  0.0812438893
+2023-01-02 03:00:00  0.1523191563  0.0843492399
+2023-01-02 04:00:00  0.1447391616 -0.0523978062
+2023-01-02 05:00:00  0.1903752649 -0.1013429022
+2023-01-02 06:00:00  0.1951580717 -0.0234571864
+2023-01-02 07:00:00  0.1679816048  0.0482517326
+2023-01-02 08:00:00  0.2434625251  0.1271295842
+2023-01-02 09:00:00  0.1416342557  0.0203600989
+2023-01-02 10:00:00  0.1294042666 -0.0318341944
+2023-01-02 11:00:00  0.1003323150 -0.0501446696
+2023-01-02 12:00:00  0.0806365365 -0.1026618455
+2023-01-02 13:00:00  0.0733749460 -0.0485372436
+2023-01-02 14:00:00  0.0550244567 -0.0710099804
+2023-01-02 15:00:00  0.0538892601  0.0433190531
+2023-01-02 16:00:00  0.0273015775  0.0643314561
+2023-01-02 17:00:00  0.0115897338  0.0044827628
+2023-01-02 18:00:00  0.0328999805 -0.0240380530
+2023-01-02 19:00:00  0.1043002359 -0.0529394666
+2023-01-02 20:00:00  0.0161355801 -0.1179687817
+2023-01-02 21:00:00  0.0042316414 -0.1769438345
+2023-01-02 22:00:00  0.1364480276 -0.1379835747
+2023-01-02 23:00:00  0.1327752638 -0.0831164291
+2023-01-03 00:00:00  0.0560038670 -0.1855011549
+2023-01-03 01:00:00  0.0654110923 -0.1999786030
+2023-01-03 02:00:00  0.0393347716 -0.1907758008
+2023-01-03 03:00:00  0.0001128079 -0.0769285596
+2023-01-03 04:00:00  0.0440343964 -0.0707863887
+2023-01-03 05:00:00  0.0339551235 -0.0543313102
+2023-01-03 06:00:00 -0.0739332097 -0.0008156433
+2023-01-03 07:00:00 -0.0569717736 -0.0512666027
+2023-01-03 08:00:00 -0.1259451889 -0.1374094801
+2023-01-03 09:00:00 -0.0611736477 -0.1499558192
+2023-01-03 10:00:00 -0.0694792038 -0.1322179008
+2023-01-03 11:00:00 -0.0900839653 -0.1185098344
+2023-01-03 12:00:00 -0.0722325078 -0.1120372595
+2023-01-03 13:00:00 -0.0972377597 -0.1632275817
+2023-01-03 14:00:00 -0.0624833673 -0.1171405306
+2023-01-03 15:00:00 -0.0028981008 -0.1320065804
+2023-01-03 16:00:00  0.0576751023 -0.1319334770
+2023-01-03 17:00:00  0.0887525873 -0.0958392824
+2023-01-03 18:00:00  0.1239725447 -0.0387858733
+2023-01-03 19:00:00  0.1466931313 -0.0195880068
+2023-01-03 20:00:00  0.1673344951 -0.0285832514
+2023-01-03 21:00:00  0.1388538396 -0.0426745818
+2023-01-03 22:00:00  0.0272708912 -0.0805434509
+2023-01-03 23:00:00  0.1044243751 -0.0920913639
+2023-01-04 00:00:00  0.1756289288 -0.0053523987
+2023-01-04 01:00:00  0.2248620317  0.1230518073
+2023-01-04 02:00:00  0.3182708395  0.2084592981
+2023-01-04 03:00:00  0.3371170169  0.1405754800
+2023-01-04 04:00:00  0.2516173390  0.1147744894
+2023-01-04 05:00:00  0.2338826075  0.1060358115
+2023-01-04 06:00:00  0.2954493334  0.0304877032
+2023-01-04 07:00:00  0.2776161935  0.0699038652
+2023-01-04 08:00:00  0.2689223919  0.1666692266
+2023-01-04 09:00:00  0.2290314439  0.2228808459
+2023-01-04 10:00:00  0.2111019386  0.1445169156
+2023-01-04 11:00:00  0.1938417537  0.1955688288
+2023-01-04 12:00:00  0.0974951502  0.2003737933
+2023-01-04 13:00:00  0.0908393186  0.2219871239
+2023-01-04 14:00:00  0.1153065955  0.2213227293
+2023-01-04 15:00:00  0.0456321798  0.1725584790
+2023-01-04 16:00:00  0.0528314644  0.1772768163
+2023-01-04 17:00:00 -0.0009998323  0.0627653749
+2023-01-04 18:00:00 -0.0511818983  0.0671712853
+2023-01-04 19:00:00 -0.0709359255  0.0879907213
+2023-01-04 20:00:00 -0.0812377421  0.1407928204
+2023-01-04 21:00:00 -0.0867817229  0.1674287299
+2023-01-04 22:00:00 -0.0873150535  0.1934249423
+2023-01-04 23:00:00 -0.1794132532  0.2006693188
+2023-01-05 00:00:00 -0.1970744700  0.2148629642
+2023-01-05 01:00:00 -0.2833114032  0.1101909078
+2023-01-05 02:00:00 -0.3866482882  0.0527110880
+2023-01-05 03:00:00 -0.3972673334  0.1069417062
+2023-01-05 04:00:00 -0.3651703039  0.2240545570
+2023-01-05 05:00:00 -0.2587424469  0.2879730143
+2023-01-05 06:00:00 -0.2966105140  0.2601948799
+2023-01-05 07:00:00 -0.2765239119  0.3084227852
+2023-01-05 08:00:00 -0.2587946015  0.2710966561
+2023-01-05 09:00:00 -0.2592211876  0.3203692568
+2023-01-05 10:00:00 -0.2603162027  0.3222180761
+2023-01-05 11:00:00 -0.1674222307  0.2876905986
+2023-01-05 12:00:00 -0.0791119811  0.3583769231
+2023-01-05 13:00:00 -0.0615511710  0.3212917195
+2023-01-05 14:00:00 -0.1174467311  0.2868233801
+2023-01-05 15:00:00 -0.1790259085  0.2298773189
+2023-01-05 16:00:00 -0.1572187047  0.1849944746
+2023-01-05 17:00:00 -0.1506669282  0.2362576231
+2023-01-05 18:00:00 -0.1175207000  0.2193694235
+2023-01-05 19:00:00 -0.0596166848  0.1193595457
+2023-01-05 20:00:00 -0.1323269566  0.1392608815
+2023-01-05 21:00:00 -0.1074891173  0.1858663205
+2023-01-05 22:00:00 -0.0917179291  0.2651802943
+2023-01-05 23:00:00 -0.1218195879  0.3101868162
+2023-01-06 00:00:00 -0.1422587072  0.2733505077
+2023-01-06 01:00:00 -0.2138913227  0.2105305069
+2023-01-06 02:00:00 -0.1965343188  0.1784650031
+2023-01-06 03:00:00 -0.2370009081  0.1151137393
+2023-01-06 04:00:00 -0.1976672012  0.1005030260
+2023-01-06 05:00:00 -0.1869902455  0.0483807574
+2023-01-06 06:00:00 -0.2134519361  0.0199982313
+2023-01-06 07:00:00 -0.1904372580  0.0067462721
+2023-01-06 08:00:00 -0.1616422000  0.0419417063
+2023-01-06 09:00:00 -0.1077230662 -0.0259508592
+2023-01-06 10:00:00 -0.1467675879  0.0810912781
+2023-01-06 11:00:00 -0.2119343990  0.0244347000
+2023-01-06 12:00:00 -0.2424302068 -0.0001108947
+2023-01-06 13:00:00 -0.2206903480  0.0079028474
+2023-01-06 14:00:00 -0.2186045948  0.0677542845
+2023-01-06 15:00:00 -0.0923454028  0.1043258157
+2023-01-06 16:00:00 -0.1550919891  0.1745538988
+2023-01-06 17:00:00 -0.0503690084  0.2484154466
+2023-01-06 18:00:00 -0.1249158633  0.2349200682
+2023-01-06 19:00:00 -0.2569683139  0.3612437821
+2023-01-06 20:00:00 -0.0617627682  0.3028931792
+2023-01-06 21:00:00 -0.1083728484  0.2212982006
+2023-01-06 22:00:00 -0.0850218033  0.1997000212
+2023-01-06 23:00:00  0.0070079397  0.1612088537
+2023-01-07 00:00:00  0.0499615659  0.0441672877
+2023-01-07 01:00:00            NA            NA
+2023-01-07 02:00:00            NA            NA
+2023-01-07 03:00:00            NA            NA
+2023-01-07 04:00:00            NA            NA
+2023-01-07 05:00:00            NA            NA
+2023-01-07 06:00:00            NA            NA
+2023-01-07 07:00:00            NA            NA
+2023-01-07 08:00:00            NA            NA
+2023-01-07 09:00:00            NA            NA
+2023-01-07 10:00:00            NA            NA
+2023-01-07 11:00:00            NA            NA
+2023-01-07 12:00:00            NA            NA
+2023-01-07 13:00:00            NA            NA
+2023-01-07 14:00:00            NA            NA
+2023-01-07 15:00:00            NA            NA
+2023-01-07 16:00:00            NA            NA
+2023-01-07 17:00:00            NA            NA
+2023-01-07 18:00:00            NA            NA
+2023-01-07 19:00:00            NA            NA
+2023-01-07 20:00:00            NA            NA
+2023-01-07 21:00:00            NA            NA
+2023-01-07 22:00:00            NA            NA
+2023-01-07 23:00:00            NA            NA</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>SEE ALSO</strong></p>
+</div>
+<div class="callout-content">
+<p><code>?rollmean</code> | <code>?rollmax</code> | <code>?rollmedian</code> | <code>?rollsum</code></p>
+</div>
+</div>
+</div>
+<div class="footer">
+<p>Data Manipulation with xts</p>
+</div>
+<!----------------------------------------------------------------------------->
+</section>
+
+<section id="aggregation-in-timeiv" class="title-slide slide level3 center">
+<h3>Aggregation in time/IV</h3>
+<p><strong>Rolling aggregation</strong></p>
+<p>Rolling mean with a 24-hour window and calculate FUN at every 3th time point.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p style="text-align: center;">
+width = 24, by = 3
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>(rolling_mean1 <span class="ot">&lt;-</span> <span class="fu">rollapply</span>(</span>
+<span id="cb42-2"><a href="#cb42-2"></a>  xts_data, <span class="at">width =</span> <span class="dv">24</span>, <span class="at">by =</span> <span class="dv">3</span>,</span>
+<span id="cb42-3"><a href="#cb42-3"></a>  <span class="at">align =</span> <span class="st">'center'</span>, <span class="at">FUN =</span> mean))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                      Temperature      Humidity
+2023-01-01 00:00:00            NA            NA
+2023-01-01 01:00:00            NA            NA
+2023-01-01 02:00:00            NA            NA
+2023-01-01 03:00:00            NA            NA
+2023-01-01 04:00:00            NA            NA
+2023-01-01 05:00:00            NA            NA
+2023-01-01 06:00:00            NA            NA
+2023-01-01 07:00:00            NA            NA
+2023-01-01 08:00:00            NA            NA
+2023-01-01 09:00:00            NA            NA
+2023-01-01 10:00:00            NA            NA
+2023-01-01 11:00:00 -0.0086757604  0.0504015729
+2023-01-01 12:00:00            NA            NA
+2023-01-01 13:00:00            NA            NA
+2023-01-01 14:00:00 -0.1020924567 -0.0655162365
+2023-01-01 15:00:00            NA            NA
+2023-01-01 16:00:00            NA            NA
+2023-01-01 17:00:00 -0.1706678739 -0.0993923545
+2023-01-01 18:00:00            NA            NA
+2023-01-01 19:00:00            NA            NA
+2023-01-01 20:00:00 -0.0657713622 -0.0076545082
+2023-01-01 21:00:00            NA            NA
+2023-01-01 22:00:00            NA            NA
+2023-01-01 23:00:00 -0.0136829802  0.0465881203
+2023-01-02 00:00:00            NA            NA
+2023-01-02 01:00:00            NA            NA
+2023-01-02 02:00:00 -0.0040817198 -0.0171368103
+2023-01-02 03:00:00            NA            NA
+2023-01-02 04:00:00            NA            NA
+2023-01-02 05:00:00 -0.0708001247  0.0787477897
+2023-01-02 06:00:00            NA            NA
+2023-01-02 07:00:00            NA            NA
+2023-01-02 08:00:00  0.0521490763  0.0640268388
+2023-01-02 09:00:00            NA            NA
+2023-01-02 10:00:00            NA            NA
+2023-01-02 11:00:00  0.0513249855  0.0963876125
+2023-01-02 12:00:00            NA            NA
+2023-01-02 13:00:00            NA            NA
+2023-01-02 14:00:00  0.1523191563  0.0843492399
+2023-01-02 15:00:00            NA            NA
+2023-01-02 16:00:00            NA            NA
+2023-01-02 17:00:00  0.1951580717 -0.0234571864
+2023-01-02 18:00:00            NA            NA
+2023-01-02 19:00:00            NA            NA
+2023-01-02 20:00:00  0.1416342557  0.0203600989
+2023-01-02 21:00:00            NA            NA
+2023-01-02 22:00:00            NA            NA
+2023-01-02 23:00:00  0.0806365365 -0.1026618455
+2023-01-03 00:00:00            NA            NA
+2023-01-03 01:00:00            NA            NA
+2023-01-03 02:00:00  0.0538892601  0.0433190531
+2023-01-03 03:00:00            NA            NA
+2023-01-03 04:00:00            NA            NA
+2023-01-03 05:00:00  0.0328999805 -0.0240380530
+2023-01-03 06:00:00            NA            NA
+2023-01-03 07:00:00            NA            NA
+2023-01-03 08:00:00  0.0042316414 -0.1769438345
+2023-01-03 09:00:00            NA            NA
+2023-01-03 10:00:00            NA            NA
+2023-01-03 11:00:00  0.0560038670 -0.1855011549
+2023-01-03 12:00:00            NA            NA
+2023-01-03 13:00:00            NA            NA
+2023-01-03 14:00:00  0.0001128079 -0.0769285596
+2023-01-03 15:00:00            NA            NA
+2023-01-03 16:00:00            NA            NA
+2023-01-03 17:00:00 -0.0739332097 -0.0008156433
+2023-01-03 18:00:00            NA            NA
+2023-01-03 19:00:00            NA            NA
+2023-01-03 20:00:00 -0.0611736477 -0.1499558192
+2023-01-03 21:00:00            NA            NA
+2023-01-03 22:00:00            NA            NA
+2023-01-03 23:00:00 -0.0722325078 -0.1120372595
+2023-01-04 00:00:00            NA            NA
+2023-01-04 01:00:00            NA            NA
+2023-01-04 02:00:00 -0.0028981008 -0.1320065804
+2023-01-04 03:00:00            NA            NA
+2023-01-04 04:00:00            NA            NA
+2023-01-04 05:00:00  0.1239725447 -0.0387858733
+2023-01-04 06:00:00            NA            NA
+2023-01-04 07:00:00            NA            NA
+2023-01-04 08:00:00  0.1388538396 -0.0426745818
+2023-01-04 09:00:00            NA            NA
+2023-01-04 10:00:00            NA            NA
+2023-01-04 11:00:00  0.1756289288 -0.0053523987
+2023-01-04 12:00:00            NA            NA
+2023-01-04 13:00:00            NA            NA
+2023-01-04 14:00:00  0.3371170169  0.1405754800
+2023-01-04 15:00:00            NA            NA
+2023-01-04 16:00:00            NA            NA
+2023-01-04 17:00:00  0.2954493334  0.0304877032
+2023-01-04 18:00:00            NA            NA
+2023-01-04 19:00:00            NA            NA
+2023-01-04 20:00:00  0.2290314439  0.2228808459
+2023-01-04 21:00:00            NA            NA
+2023-01-04 22:00:00            NA            NA
+2023-01-04 23:00:00  0.0974951502  0.2003737933
+2023-01-05 00:00:00            NA            NA
+2023-01-05 01:00:00            NA            NA
+2023-01-05 02:00:00  0.0456321798  0.1725584790
+2023-01-05 03:00:00            NA            NA
+2023-01-05 04:00:00            NA            NA
+2023-01-05 05:00:00 -0.0511818983  0.0671712853
+2023-01-05 06:00:00            NA            NA
+2023-01-05 07:00:00            NA            NA
+2023-01-05 08:00:00 -0.0867817229  0.1674287299
+2023-01-05 09:00:00            NA            NA
+2023-01-05 10:00:00            NA            NA
+2023-01-05 11:00:00 -0.1970744700  0.2148629642
+2023-01-05 12:00:00            NA            NA
+2023-01-05 13:00:00            NA            NA
+2023-01-05 14:00:00 -0.3972673334  0.1069417062
+2023-01-05 15:00:00            NA            NA
+2023-01-05 16:00:00            NA            NA
+2023-01-05 17:00:00 -0.2966105140  0.2601948799
+2023-01-05 18:00:00            NA            NA
+2023-01-05 19:00:00            NA            NA
+2023-01-05 20:00:00 -0.2592211876  0.3203692568
+2023-01-05 21:00:00            NA            NA
+2023-01-05 22:00:00            NA            NA
+2023-01-05 23:00:00 -0.0791119811  0.3583769231
+2023-01-06 00:00:00            NA            NA
+2023-01-06 01:00:00            NA            NA
+2023-01-06 02:00:00 -0.1790259085  0.2298773189
+2023-01-06 03:00:00            NA            NA
+2023-01-06 04:00:00            NA            NA
+2023-01-06 05:00:00 -0.1175207000  0.2193694235
+2023-01-06 06:00:00            NA            NA
+2023-01-06 07:00:00            NA            NA
+2023-01-06 08:00:00 -0.1074891173  0.1858663205
+2023-01-06 09:00:00            NA            NA
+2023-01-06 10:00:00            NA            NA
+2023-01-06 11:00:00 -0.1422587072  0.2733505077
+2023-01-06 12:00:00            NA            NA
+2023-01-06 13:00:00            NA            NA
+2023-01-06 14:00:00 -0.2370009081  0.1151137393
+2023-01-06 15:00:00            NA            NA
+2023-01-06 16:00:00            NA            NA
+2023-01-06 17:00:00 -0.2134519361  0.0199982313
+2023-01-06 18:00:00            NA            NA
+2023-01-06 19:00:00            NA            NA
+2023-01-06 20:00:00 -0.1077230662 -0.0259508592
+2023-01-06 21:00:00            NA            NA
+2023-01-06 22:00:00            NA            NA
+2023-01-06 23:00:00 -0.2424302068 -0.0001108947
+2023-01-07 00:00:00            NA            NA
+2023-01-07 01:00:00            NA            NA
+2023-01-07 02:00:00 -0.0923454028  0.1043258157
+2023-01-07 03:00:00            NA            NA
+2023-01-07 04:00:00            NA            NA
+2023-01-07 05:00:00 -0.1249158633  0.2349200682
+2023-01-07 06:00:00            NA            NA
+2023-01-07 07:00:00            NA            NA
+2023-01-07 08:00:00 -0.1083728484  0.2212982006
+2023-01-07 09:00:00            NA            NA
+2023-01-07 10:00:00            NA            NA
+2023-01-07 11:00:00  0.0499615659  0.0441672877
+2023-01-07 12:00:00            NA            NA
+2023-01-07 13:00:00            NA            NA
+2023-01-07 14:00:00            NA            NA
+2023-01-07 15:00:00            NA            NA
+2023-01-07 16:00:00            NA            NA
+2023-01-07 17:00:00            NA            NA
+2023-01-07 18:00:00            NA            NA
+2023-01-07 19:00:00            NA            NA
+2023-01-07 20:00:00            NA            NA
+2023-01-07 21:00:00            NA            NA
+2023-01-07 22:00:00            NA            NA
+2023-01-07 23:00:00            NA            NA</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">mean</span>(xts_data[<span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>, <span class="dv">1</span>]) <span class="co"># -0.00867576</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a><span class="fu">mean</span>(xts_data[<span class="dv">4</span><span class="sc">:</span><span class="dv">27</span>, <span class="dv">1</span>]) <span class="co"># -0.1020925</span></span>
+<span id="cb44-3"><a href="#cb44-3"></a><span class="fu">mean</span>(xts_data[<span class="dv">7</span><span class="sc">:</span><span class="dv">30</span>, <span class="dv">1</span>]) <span class="co"># -0.1706679</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p style="text-align: center;">
+width = 5, by = 3
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>(rolling_mean2 <span class="ot">&lt;-</span> <span class="fu">rollapply</span>(</span>
+<span id="cb45-2"><a href="#cb45-2"></a>  xts_data, <span class="at">width =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="dv">3</span>,</span>
+<span id="cb45-3"><a href="#cb45-3"></a>  <span class="at">align =</span> <span class="st">'center'</span>, <span class="at">FUN =</span> mean))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    Temperature    Humidity
+2023-01-01 00:00:00          NA          NA
+2023-01-01 01:00:00          NA          NA
+2023-01-01 02:00:00  0.19357026  0.14033437
+2023-01-01 03:00:00          NA          NA
+2023-01-01 04:00:00          NA          NA
+2023-01-01 05:00:00  0.22214322  0.06446906
+2023-01-01 06:00:00          NA          NA
+2023-01-01 07:00:00          NA          NA
+2023-01-01 08:00:00 -0.14251561 -0.21050795
+2023-01-01 09:00:00          NA          NA
+2023-01-01 10:00:00          NA          NA
+2023-01-01 11:00:00  0.32993756  0.09769959
+2023-01-01 12:00:00          NA          NA
+2023-01-01 13:00:00          NA          NA
+2023-01-01 14:00:00  0.44807533 -0.25031676
+2023-01-01 15:00:00          NA          NA
+2023-01-01 16:00:00          NA          NA
+2023-01-01 17:00:00  0.10934219 -0.02086215
+2023-01-01 18:00:00          NA          NA
+2023-01-01 19:00:00          NA          NA
+2023-01-01 20:00:00 -0.41664772  0.33277293
+2023-01-01 21:00:00          NA          NA
+2023-01-01 22:00:00          NA          NA
+2023-01-01 23:00:00 -0.85692063 -0.28206249
+2023-01-02 00:00:00          NA          NA
+2023-01-02 01:00:00          NA          NA
+2023-01-02 02:00:00 -0.49174187  0.09726817
+2023-01-02 03:00:00          NA          NA
+2023-01-02 04:00:00          NA          NA
+2023-01-02 05:00:00  0.08008877 -0.08999903
+2023-01-02 06:00:00          NA          NA
+2023-01-02 07:00:00          NA          NA
+2023-01-02 08:00:00  0.54524659  0.28988645
+2023-01-02 09:00:00          NA          NA
+2023-01-02 10:00:00          NA          NA
+2023-01-02 11:00:00  0.57607215  0.13997503
+2023-01-02 12:00:00          NA          NA
+2023-01-02 13:00:00          NA          NA
+2023-01-02 14:00:00 -0.17782694 -0.12457990
+2023-01-02 15:00:00          NA          NA
+2023-01-02 16:00:00          NA          NA
+2023-01-02 17:00:00 -0.07590713  0.27303895
+2023-01-02 18:00:00          NA          NA
+2023-01-02 19:00:00          NA          NA
+2023-01-02 20:00:00  0.11710564  0.01736751
+2023-01-02 21:00:00          NA          NA
+2023-01-02 22:00:00          NA          NA
+2023-01-02 23:00:00 -0.25921054 -0.19942065
+2023-01-03 00:00:00          NA          NA
+2023-01-03 01:00:00          NA          NA
+2023-01-03 02:00:00  0.17569947 -0.85183830
+2023-01-03 03:00:00          NA          NA
+2023-01-03 04:00:00          NA          NA
+2023-01-03 05:00:00  0.51757694  0.11534662
+2023-01-03 06:00:00          NA          NA
+2023-01-03 07:00:00          NA          NA
+2023-01-03 08:00:00  0.09008296  0.16178653
+2023-01-03 09:00:00          NA          NA
+2023-01-03 10:00:00          NA          NA
+2023-01-03 11:00:00  0.16034512 -0.29860135
+2023-01-03 12:00:00          NA          NA
+2023-01-03 13:00:00          NA          NA
+2023-01-03 14:00:00 -0.50925159  0.38971422
+2023-01-03 15:00:00          NA          NA
+2023-01-03 16:00:00          NA          NA
+2023-01-03 17:00:00 -0.25712479 -0.50114266
+2023-01-03 18:00:00          NA          NA
+2023-01-03 19:00:00          NA          NA
+2023-01-03 20:00:00  0.59650700 -0.26620869
+2023-01-03 21:00:00          NA          NA
+2023-01-03 22:00:00          NA          NA
+2023-01-03 23:00:00 -0.09071552 -0.26581409
+2023-01-04 00:00:00          NA          NA
+2023-01-04 01:00:00          NA          NA
+2023-01-04 02:00:00  0.06986550 -0.22222305
+2023-01-04 03:00:00          NA          NA
+2023-01-04 04:00:00          NA          NA
+2023-01-04 05:00:00 -0.08750145 -0.17496180
+2023-01-04 06:00:00          NA          NA
+2023-01-04 07:00:00          NA          NA
+2023-01-04 08:00:00  0.01255933 -0.40314558
+2023-01-04 09:00:00          NA          NA
+2023-01-04 10:00:00          NA          NA
+2023-01-04 11:00:00  0.15405846 -0.14108797
+2023-01-04 12:00:00          NA          NA
+2023-01-04 13:00:00          NA          NA
+2023-01-04 14:00:00  0.26347686  0.46746451
+2023-01-04 15:00:00          NA          NA
+2023-01-04 16:00:00          NA          NA
+2023-01-04 17:00:00  0.55999167 -0.00471068
+2023-01-04 18:00:00          NA          NA
+2023-01-04 19:00:00          NA          NA
+2023-01-04 20:00:00  0.50267578 -0.52207505
+2023-01-04 21:00:00          NA          NA
+2023-01-04 22:00:00          NA          NA
+2023-01-04 23:00:00  0.77048608  0.93962854
+2023-01-05 00:00:00          NA          NA
+2023-01-05 01:00:00          NA          NA
+2023-01-05 02:00:00  0.34948316  0.31244036
+2023-01-05 03:00:00          NA          NA
+2023-01-05 04:00:00          NA          NA
+2023-01-05 05:00:00 -0.41483565 -0.04971181
+2023-01-05 06:00:00          NA          NA
+2023-01-05 07:00:00          NA          NA
+2023-01-05 08:00:00 -0.47515705  0.38924382
+2023-01-05 09:00:00          NA          NA
+2023-01-05 10:00:00          NA          NA
+2023-01-05 11:00:00 -0.39182081 -0.14856693
+2023-01-05 12:00:00          NA          NA
+2023-01-05 13:00:00          NA          NA
+2023-01-05 14:00:00 -0.20929905 -0.19305589
+2023-01-05 15:00:00          NA          NA
+2023-01-05 16:00:00          NA          NA
+2023-01-05 17:00:00 -0.04898396 -0.15718584
+2023-01-05 18:00:00          NA          NA
+2023-01-05 19:00:00          NA          NA
+2023-01-05 20:00:00 -0.11283472  0.11871551
+2023-01-05 21:00:00          NA          NA
+2023-01-05 22:00:00          NA          NA
+2023-01-05 23:00:00 -0.66887343  0.38898386
+2023-01-06 00:00:00          NA          NA
+2023-01-06 01:00:00          NA          NA
+2023-01-06 02:00:00  0.05347687  0.66336860
+2023-01-06 03:00:00          NA          NA
+2023-01-06 04:00:00          NA          NA
+2023-01-06 05:00:00  0.24983347  0.73823195
+2023-01-06 06:00:00          NA          NA
+2023-01-06 07:00:00          NA          NA
+2023-01-06 08:00:00  0.14494671  0.52122327
+2023-01-06 09:00:00          NA          NA
+2023-01-06 10:00:00          NA          NA
+2023-01-06 11:00:00  0.28869658 -0.30958714
+2023-01-06 12:00:00          NA          NA
+2023-01-06 13:00:00          NA          NA
+2023-01-06 14:00:00 -0.55276280 -0.77922853
+2023-01-06 15:00:00          NA          NA
+2023-01-06 16:00:00          NA          NA
+2023-01-06 17:00:00  0.17517101 -0.59214474
+2023-01-06 18:00:00          NA          NA
+2023-01-06 19:00:00          NA          NA
+2023-01-06 20:00:00 -0.13346938  0.55463900
+2023-01-06 21:00:00          NA          NA
+2023-01-06 22:00:00          NA          NA
+2023-01-06 23:00:00 -1.09629040  0.35345753
+2023-01-07 00:00:00          NA          NA
+2023-01-07 01:00:00          NA          NA
+2023-01-07 02:00:00 -0.16123451 -0.41648620
+2023-01-07 03:00:00          NA          NA
+2023-01-07 04:00:00          NA          NA
+2023-01-07 05:00:00  0.61155527  0.38700619
+2023-01-07 06:00:00          NA          NA
+2023-01-07 07:00:00          NA          NA
+2023-01-07 08:00:00  0.15223089  0.54251832
+2023-01-07 09:00:00          NA          NA
+2023-01-07 10:00:00          NA          NA
+2023-01-07 11:00:00 -0.24353475  0.14019755
+2023-01-07 12:00:00          NA          NA
+2023-01-07 13:00:00          NA          NA
+2023-01-07 14:00:00  0.36913095  0.41369790
+2023-01-07 15:00:00          NA          NA
+2023-01-07 16:00:00          NA          NA
+2023-01-07 17:00:00  0.32196766  0.36097860
+2023-01-07 18:00:00          NA          NA
+2023-01-07 19:00:00          NA          NA
+2023-01-07 20:00:00  0.49976487  0.20082517
+2023-01-07 21:00:00          NA          NA
+2023-01-07 22:00:00          NA          NA
+2023-01-07 23:00:00          NA          NA</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">mean</span>(xts_data[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span>])  <span class="co"># 0.1935703</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a><span class="fu">mean</span>(xts_data[<span class="dv">4</span><span class="sc">:</span><span class="dv">8</span>, <span class="dv">1</span>])  <span class="co"># 0.2221432</span></span>
+<span id="cb47-3"><a href="#cb47-3"></a><span class="fu">mean</span>(xts_data[<span class="dv">7</span><span class="sc">:</span><span class="dv">11</span>, <span class="dv">1</span>]) <span class="co"># -0.1425156</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<p>Data Manipulation with xts</p>
+</div>
+<!----------------------------------------------------------------------------->
+</section>
+
+<section id="averages-for-the-same-monthsdayshours." class="title-slide slide level3 center">
+<h3>Averages for the same months/days/hours.</h3>
+<p>What if I want the averages for the same months/days/hours etc.. in a time-series?</p>
+<ul>
+<li>sapply</li>
+<li>aggragate</li>
+<li>split-apply-combine</li>
+</ul>
+<p>Generate a toy dataset to play with</p>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb48-2"><a href="#cb48-2"></a><span class="co"># 5 years of monthly data</span></span>
+<span id="cb48-3"><a href="#cb48-3"></a>dates <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"2020-01-01"</span>),</span>
+<span id="cb48-4"><a href="#cb48-4"></a>             <span class="at">by =</span> <span class="st">"month"</span>, <span class="at">length.out =</span> <span class="dv">60</span>)</span>
+<span id="cb48-5"><a href="#cb48-5"></a>data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(dates)<span class="sc">*</span><span class="dv">2</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb48-6"><a href="#cb48-6"></a><span class="fu">colnames</span>(data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Temperature"</span>, <span class="st">"Humidity"</span>)</span>
+<span id="cb48-7"><a href="#cb48-7"></a>(xts_data <span class="ot">&lt;-</span> <span class="fu">xts</span>(data, <span class="at">order.by =</span> dates))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output cell-output-stdout">
+<pre><code>           Temperature     Humidity
+2020-01-01 -0.56047565  0.379639483
+2020-02-01 -0.23017749 -0.502323453
+2020-03-01  1.55870831 -0.333207384
+2020-04-01  0.07050839 -1.018575383
+2020-05-01  0.12928774 -1.071791226
+2020-06-01  1.71506499  0.303528641
+2020-07-01  0.46091621  0.448209779
+2020-08-01 -1.26506123  0.053004227
+2020-09-01 -0.68685285  0.922267468
+2020-10-01 -0.44566197  2.050084686
+2020-11-01  1.22408180 -0.491031166
+2020-12-01  0.35981383 -2.309168876
+2021-01-01  0.40077145  1.005738524
+2021-02-01  0.11068272 -0.709200763
+2021-03-01 -0.55584113 -0.688008616
+2021-04-01  1.78691314  1.025571370
+2021-05-01  0.49785048 -0.284773007
+2021-06-01 -1.96661716 -1.220717712
+2021-07-01  0.70135590  0.181303480
+2021-08-01 -0.47279141 -0.138891362
+2021-09-01 -1.06782371  0.005764186
+2021-10-01 -0.21797491  0.385280401
+2021-11-01 -1.02600445 -0.370660032
+2021-12-01 -0.72889123  0.644376549
+2022-01-01 -0.62503927 -0.220486562
+2022-02-01 -1.68669331  0.331781964
+2022-03-01  0.83778704  1.096839013
+2022-04-01  0.15337312  0.435181491
+2022-05-01 -1.13813694 -0.325931586
+2022-06-01  1.25381492  1.148807618
+2022-07-01  0.42646422  0.993503856
+2022-08-01 -0.29507148  0.548396960
+2022-09-01  0.89512566  0.238731735
+2022-10-01  0.87813349 -0.627906076
+2022-11-01  0.82158108  1.360652449
+2022-12-01  0.68864025 -0.600259587
+2023-01-01  0.55391765  2.187332993
+2023-02-01 -0.06191171  1.532610626
+2023-03-01 -0.30596266 -0.235700359
+2023-04-01 -0.38047100 -1.026420900
+2023-05-01 -0.69470698 -0.710406564
+2023-06-01 -0.20791728  0.256883709
+2023-07-01 -1.26539635 -0.246691878
+2023-08-01  2.16895597 -0.347542599
+2023-09-01  1.20796200 -0.951618567
+2023-10-01 -1.12310858 -0.045027725
+2023-11-01 -0.40288484 -0.784904469
+2023-12-01 -0.46665535 -1.667941937
+2024-01-01  0.77996512 -0.380226520
+2024-02-01 -0.08336907  0.918996609
+2024-03-01  0.25331851 -0.575346963
+2024-04-01 -0.02854676  0.607964322
+2024-05-01 -0.04287046 -1.617882708
+2024-06-01  1.36860228 -0.055561966
+2024-07-01 -0.22577099  0.519407204
+2024-08-01  1.51647060  0.301153362
+2024-09-01 -1.54875280  0.105676194
+2024-10-01  0.58461375 -0.640706008
+2024-11-01  0.12385424 -0.849704346
+2024-12-01  0.21594157 -1.024128791</code></pre>
+</div>
+</div>
+</div>
+<div class="footer">
+<p>Data Manipulation with xts</p>
+</div>
+<!----------------------------------------------------------------------------->
+</section>
+
+<section id="using-sapply" class="title-slide slide level3 center">
+<h3>Using sapply</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>(monthly_means <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="cf">function</span>(m) {</span>
+<span id="cb50-2"><a href="#cb50-2"></a>  month_data <span class="ot">&lt;-</span> xts_data[<span class="fu">format</span>(<span class="fu">index</span>(xts_data), <span class="st">"%m"</span>) <span class="sc">==</span> <span class="fu">sprintf</span>(<span class="st">"%02d"</span>, m)]</span>
+<span id="cb50-3"><a href="#cb50-3"></a>  <span class="fu">colMeans</span>(month_data, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb50-4"><a href="#cb50-4"></a>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 [,1]       [,2]       [,3]       [,4]
+Temperature 0.1098279 -0.3902938  0.3576020 0.32035538
+Humidity    0.5943996  0.3143730 -0.1470849 0.00474418
+                  [,5]       [,6]      [,7]       [,8]
+Temperature -0.2497152 0.43258955 0.0195138 0.33050049
+Humidity    -0.8021570 0.08658806 0.3791465 0.08322412
+                  [,9]       [,10]      [,11]       [,12]
+Temperature -0.2400683 -0.06479965  0.1481256  0.01376981
+Humidity     0.0641642  0.22434506 -0.2271295 -0.99142453</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="co"># Transpose matrix</span></span>
+<span id="cb52-2"><a href="#cb52-2"></a>(monthly_means <span class="ot">&lt;-</span> <span class="fu">t</span>(monthly_means))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Temperature    Humidity
+ [1,]  0.10982786  0.59439958
+ [2,] -0.39029377  0.31437300
+ [3,]  0.35760201 -0.14708486
+ [4,]  0.32035538  0.00474418
+ [5,] -0.24971523 -0.80215702
+ [6,]  0.43258955  0.08658806
+ [7,]  0.01951380  0.37914649
+ [8,]  0.33050049  0.08322412
+ [9,] -0.24006834  0.06416420
+[10,] -0.06479965  0.22434506
+[11,]  0.14812557 -0.22712951
+[12,]  0.01376981 -0.99142453</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">class</span>(monthly_means)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "matrix" "array" </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(<span class="st">"2023-"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="st">"-01"</span>))</span>
+<span id="cb56-2"><a href="#cb56-2"></a>(monthly_means_xts <span class="ot">&lt;-</span> <span class="fu">xts</span>(</span>
+<span id="cb56-3"><a href="#cb56-3"></a>  monthly_means, <span class="at">order.by =</span> dates))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           Temperature    Humidity
+2023-01-01  0.10982786  0.59439958
+2023-02-01 -0.39029377  0.31437300
+2023-03-01  0.35760201 -0.14708486
+2023-04-01  0.32035538  0.00474418
+2023-05-01 -0.24971523 -0.80215702
+2023-06-01  0.43258955  0.08658806
+2023-07-01  0.01951380  0.37914649
+2023-08-01  0.33050049  0.08322412
+2023-09-01 -0.24006834  0.06416420
+2023-10-01 -0.06479965  0.22434506
+2023-11-01  0.14812557 -0.22712951
+2023-12-01  0.01376981 -0.99142453</code></pre>
+</div>
+</div>
+<ul>
+<li>are dates correct in <code>monthly_means_xts</code>?</li>
+<li>do we really need to convert to xts?</li>
+</ul>
+</div>
+</div>
+<div class="footer">
+<p>Data Manipulation with xts <br> Averages for the same months/days/hours</p>
+</div>
+<!----------------------------------------------------------------------------->
+</section>
+
+<section id="using-aggregate" class="title-slide slide level3 center">
+<h3>Using aggregate</h3>
+<p>Splits the data into subsets, computes summary statistics for each, and returns the result in a convenient form.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb58-2"><a href="#cb58-2"></a><span class="co"># Define the aggregation function</span></span>
+<span id="cb58-3"><a href="#cb58-3"></a>monthly_aggregate <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb58-4"><a href="#cb58-4"></a>  <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb58-5"><a href="#cb58-5"></a>}</span>
+<span id="cb58-6"><a href="#cb58-6"></a></span>
+<span id="cb58-7"><a href="#cb58-7"></a><span class="co"># Aggregate to monthly data</span></span>
+<span id="cb58-8"><a href="#cb58-8"></a>(monthly_mean <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(</span>
+<span id="cb58-9"><a href="#cb58-9"></a>  xts_data, lubridate<span class="sc">::</span><span class="fu">month</span>(xts_data),</span>
+<span id="cb58-10"><a href="#cb58-10"></a>  monthly_aggregate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Temperature    Humidity
+1   0.10982786  0.59439958
+2  -0.39029377  0.31437300
+3   0.35760201 -0.14708486
+4   0.32035538  0.00474418
+5  -0.24971523 -0.80215702
+6   0.43258955  0.08658806
+7   0.01951380  0.37914649
+8   0.33050049  0.08322412
+9  -0.24006834  0.06416420
+10 -0.06479965  0.22434506
+11  0.14812557 -0.22712951
+12  0.01376981 -0.99142453</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="co"># We use anonymous function to process aggregation.</span></span>
+<span id="cb60-2"><a href="#cb60-2"></a><span class="co"># Aggregate to monthly data</span></span>
+<span id="cb60-3"><a href="#cb60-3"></a>monthly_quantiles <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(</span>
+<span id="cb60-4"><a href="#cb60-4"></a>  xts_data, lubridate<span class="sc">::</span><span class="fu">month</span>(xts_data),</span>
+<span id="cb60-5"><a href="#cb60-5"></a>  quantile, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb60-6"><a href="#cb60-6"></a><span class="fu">class</span>(monthly_quantiles)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "zoo"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="fu">print</span>(monthly_quantiles)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Temperature.25% Temperature.50% Temperature.75% Humidity.25% Humidity.50% Humidity.75%
+1      -0.56047565      0.40077145      0.55391765 -0.220486562   0.37963948    1.0057385
+2      -0.23017749     -0.08336907     -0.06191171 -0.502323453   0.33178196    0.9189966
+3      -0.30596266      0.25331851      0.83778704 -0.575346963  -0.33320738   -0.2357004
+4      -0.02854676      0.07050839      0.15337312 -1.018575383   0.43518149    0.6079643
+5      -0.69470698     -0.04287046      0.12928774 -1.071791226  -0.71040656   -0.3259316
+6      -0.20791728      1.25381492      1.36860228 -0.055561966   0.25688371    0.3035286
+7      -0.22577099      0.42646422      0.46091621  0.181303480   0.44820978    0.5194072
+8      -0.47279141     -0.29507148      1.51647060 -0.138891362   0.05300423    0.3011534
+9      -1.06782371     -0.68685285      0.89512566  0.005764186   0.10567619    0.2387317
+10     -0.44566197     -0.21797491      0.58461375 -0.627906076  -0.04502772    0.3852804
+11     -0.40288484      0.12385424      0.82158108 -0.784904469  -0.49103117   -0.3706600
+12     -0.46665535      0.21594157      0.35981383 -1.667941937  -1.02412879   -0.6002596</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<p>Data Manipulation with xts <br> Averages for the same months/days/hours</p>
+</div>
+<!----------------------------------------------------------------------------->
+</section>
+
+<section id="using-split-apply-combinei" class="title-slide slide level3 center">
+<h3>Using Split-Apply-Combine/I</h3>
+<ul>
+<li><p><strong>Split:</strong> Segmenting the time series data into groups based on a certain criterion, such as months, years, or quarters. This is often done using functions like <code>split</code>.</p></li>
+<li><p><strong>Apply:</strong> Performing a specific operation or function on each group independently. This could be a statistical summary (like mean, median, sum), a transformation, or any custom function.</p></li>
+<li><p><strong>Combine:</strong> Merging the results from each group back into a single data structure. This can be an aggregated time series or a different format depending on the desired output.</p></li>
+</ul>
+<div class="footer">
+<p>Data Manipulation with xts <br> Averages for the same months/days/hours</p>
+</div>
+<!----------------------------------------------------------------------------->
+</section>
+
+<section id="using-split-apply-combineii" class="title-slide slide level3 center">
+<h3>Using Split-Apply-Combine/II</h3>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p style="text-align: center;">
+Split
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a>(split_by_month <span class="ot">&lt;-</span> <span class="fu">split</span>(</span>
+<span id="cb64-2"><a href="#cb64-2"></a>  xts_data,</span>
+<span id="cb64-3"><a href="#cb64-3"></a>  <span class="fu">format</span>(<span class="fu">index</span>(xts_data), <span class="st">"%m"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`01`
+           Temperature   Humidity
+2020-01-01  -0.5604756  0.3796395
+2021-01-01   0.4007715  1.0057385
+2022-01-01  -0.6250393 -0.2204866
+2023-01-01   0.5539177  2.1873330
+2024-01-01   0.7799651 -0.3802265
+
+$`02`
+           Temperature   Humidity
+2020-02-01 -0.23017749 -0.5023235
+2021-02-01  0.11068272 -0.7092008
+2022-02-01 -1.68669331  0.3317820
+2023-02-01 -0.06191171  1.5326106
+2024-02-01 -0.08336907  0.9189966
+
+$`03`
+           Temperature   Humidity
+2020-03-01   1.5587083 -0.3332074
+2021-03-01  -0.5558411 -0.6880086
+2022-03-01   0.8377870  1.0968390
+2023-03-01  -0.3059627 -0.2357004
+2024-03-01   0.2533185 -0.5753470
+
+$`04`
+           Temperature   Humidity
+2020-04-01  0.07050839 -1.0185754
+2021-04-01  1.78691314  1.0255714
+2022-04-01  0.15337312  0.4351815
+2023-04-01 -0.38047100 -1.0264209
+2024-04-01 -0.02854676  0.6079643
+
+$`05`
+           Temperature   Humidity
+2020-05-01  0.12928774 -1.0717912
+2021-05-01  0.49785048 -0.2847730
+2022-05-01 -1.13813694 -0.3259316
+2023-05-01 -0.69470698 -0.7104066
+2024-05-01 -0.04287046 -1.6178827
+
+$`06`
+           Temperature    Humidity
+2020-06-01   1.7150650  0.30352864
+2021-06-01  -1.9666172 -1.22071771
+2022-06-01   1.2538149  1.14880762
+2023-06-01  -0.2079173  0.25688371
+2024-06-01   1.3686023 -0.05556197
+
+$`07`
+           Temperature   Humidity
+2020-07-01   0.4609162  0.4482098
+2021-07-01   0.7013559  0.1813035
+2022-07-01   0.4264642  0.9935039
+2023-07-01  -1.2653964 -0.2466919
+2024-07-01  -0.2257710  0.5194072
+
+$`08`
+           Temperature    Humidity
+2020-08-01  -1.2650612  0.05300423
+2021-08-01  -0.4727914 -0.13889136
+2022-08-01  -0.2950715  0.54839696
+2023-08-01   2.1689560 -0.34754260
+2024-08-01   1.5164706  0.30115336
+
+$`09`
+           Temperature     Humidity
+2020-09-01  -0.6868529  0.922267468
+2021-09-01  -1.0678237  0.005764186
+2022-09-01   0.8951257  0.238731735
+2023-09-01   1.2079620 -0.951618567
+2024-09-01  -1.5487528  0.105676194
+
+$`10`
+           Temperature    Humidity
+2020-10-01  -0.4456620  2.05008469
+2021-10-01  -0.2179749  0.38528040
+2022-10-01   0.8781335 -0.62790608
+2023-10-01  -1.1231086 -0.04502772
+2024-10-01   0.5846137 -0.64070601
+
+$`11`
+           Temperature   Humidity
+2020-11-01   1.2240818 -0.4910312
+2021-11-01  -1.0260044 -0.3706600
+2022-11-01   0.8215811  1.3606524
+2023-11-01  -0.4028848 -0.7849045
+2024-11-01   0.1238542 -0.8497043
+
+$`12`
+           Temperature   Humidity
+2020-12-01   0.3598138 -2.3091689
+2021-12-01  -0.7288912  0.6443765
+2022-12-01   0.6886403 -0.6002596
+2023-12-01  -0.4666554 -1.6679419
+2024-12-01   0.2159416 -1.0241288</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<p style="text-align: center;">
+Apply
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a>(monthly_stats <span class="ot">&lt;-</span> <span class="fu">lapply</span>(</span>
+<span id="cb66-2"><a href="#cb66-2"></a>  split_by_month,</span>
+<span id="cb66-3"><a href="#cb66-3"></a>  <span class="cf">function</span>(x) {</span>
+<span id="cb66-4"><a href="#cb66-4"></a>    <span class="fu">apply</span>(x, <span class="dv">2</span>, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb66-5"><a href="#cb66-5"></a>  }))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`01`
+Temperature    Humidity 
+  0.1098279   0.5943996 
+
+$`02`
+Temperature    Humidity 
+ -0.3902938   0.3143730 
+
+$`03`
+Temperature    Humidity 
+  0.3576020  -0.1470849 
+
+$`04`
+Temperature    Humidity 
+ 0.32035538  0.00474418 
+
+$`05`
+Temperature    Humidity 
+ -0.2497152  -0.8021570 
+
+$`06`
+Temperature    Humidity 
+ 0.43258955  0.08658806 
+
+$`07`
+Temperature    Humidity 
+  0.0195138   0.3791465 
+
+$`08`
+Temperature    Humidity 
+ 0.33050049  0.08322412 
+
+$`09`
+Temperature    Humidity 
+ -0.2400683   0.0641642 
+
+$`10`
+Temperature    Humidity 
+-0.06479965  0.22434506 
+
+$`11`
+Temperature    Humidity 
+  0.1481256  -0.2271295 
+
+$`12`
+Temperature    Humidity 
+ 0.01376981 -0.99142453 </code></pre>
+</div>
+</div>
+</div><div class="column" style="width:34%;">
+<p style="text-align: center;">
+Combine
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>(combined_results <span class="ot">&lt;-</span> <span class="fu">do.call</span>(</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  rbind, monthly_stats))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Temperature    Humidity
+01  0.10982786  0.59439958
+02 -0.39029377  0.31437300
+03  0.35760201 -0.14708486
+04  0.32035538  0.00474418
+05 -0.24971523 -0.80215702
+06  0.43258955  0.08658806
+07  0.01951380  0.37914649
+08  0.33050049  0.08322412
+09 -0.24006834  0.06416420
+10 -0.06479965  0.22434506
+11  0.14812557 -0.22712951
+12  0.01376981 -0.99142453</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<p>Data Manipulation with xts <br> Averages for the same months/days/hours</p>
+</div>
+<!----------------------------------------------------------------------------->
+</section>
+
+<section id="using-split-apply-combineiii" class="title-slide slide level3 center">
+<h3>Using Split-Apply-Combine/III</h3>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p style="text-align: center;">
+Split
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb70-2"><a href="#cb70-2"></a>(split_by_month <span class="ot">&lt;-</span> <span class="fu">split</span>(</span>
+<span id="cb70-3"><a href="#cb70-3"></a>  xts_data, lubridate<span class="sc">::</span><span class="fu">month</span>(xts_data)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`1`
+           Temperature   Humidity
+2020-01-01  -0.5604756  0.3796395
+2021-01-01   0.4007715  1.0057385
+2022-01-01  -0.6250393 -0.2204866
+2023-01-01   0.5539177  2.1873330
+2024-01-01   0.7799651 -0.3802265
+
+$`2`
+           Temperature   Humidity
+2020-02-01 -0.23017749 -0.5023235
+2021-02-01  0.11068272 -0.7092008
+2022-02-01 -1.68669331  0.3317820
+2023-02-01 -0.06191171  1.5326106
+2024-02-01 -0.08336907  0.9189966
+
+$`3`
+           Temperature   Humidity
+2020-03-01   1.5587083 -0.3332074
+2021-03-01  -0.5558411 -0.6880086
+2022-03-01   0.8377870  1.0968390
+2023-03-01  -0.3059627 -0.2357004
+2024-03-01   0.2533185 -0.5753470
+
+$`4`
+           Temperature   Humidity
+2020-04-01  0.07050839 -1.0185754
+2021-04-01  1.78691314  1.0255714
+2022-04-01  0.15337312  0.4351815
+2023-04-01 -0.38047100 -1.0264209
+2024-04-01 -0.02854676  0.6079643
+
+$`5`
+           Temperature   Humidity
+2020-05-01  0.12928774 -1.0717912
+2021-05-01  0.49785048 -0.2847730
+2022-05-01 -1.13813694 -0.3259316
+2023-05-01 -0.69470698 -0.7104066
+2024-05-01 -0.04287046 -1.6178827
+
+$`6`
+           Temperature    Humidity
+2020-06-01   1.7150650  0.30352864
+2021-06-01  -1.9666172 -1.22071771
+2022-06-01   1.2538149  1.14880762
+2023-06-01  -0.2079173  0.25688371
+2024-06-01   1.3686023 -0.05556197
+
+$`7`
+           Temperature   Humidity
+2020-07-01   0.4609162  0.4482098
+2021-07-01   0.7013559  0.1813035
+2022-07-01   0.4264642  0.9935039
+2023-07-01  -1.2653964 -0.2466919
+2024-07-01  -0.2257710  0.5194072
+
+$`8`
+           Temperature    Humidity
+2020-08-01  -1.2650612  0.05300423
+2021-08-01  -0.4727914 -0.13889136
+2022-08-01  -0.2950715  0.54839696
+2023-08-01   2.1689560 -0.34754260
+2024-08-01   1.5164706  0.30115336
+
+$`9`
+           Temperature     Humidity
+2020-09-01  -0.6868529  0.922267468
+2021-09-01  -1.0678237  0.005764186
+2022-09-01   0.8951257  0.238731735
+2023-09-01   1.2079620 -0.951618567
+2024-09-01  -1.5487528  0.105676194
+
+$`10`
+           Temperature    Humidity
+2020-10-01  -0.4456620  2.05008469
+2021-10-01  -0.2179749  0.38528040
+2022-10-01   0.8781335 -0.62790608
+2023-10-01  -1.1231086 -0.04502772
+2024-10-01   0.5846137 -0.64070601
+
+$`11`
+           Temperature   Humidity
+2020-11-01   1.2240818 -0.4910312
+2021-11-01  -1.0260044 -0.3706600
+2022-11-01   0.8215811  1.3606524
+2023-11-01  -0.4028848 -0.7849045
+2024-11-01   0.1238542 -0.8497043
+
+$`12`
+           Temperature   Humidity
+2020-12-01   0.3598138 -2.3091689
+2021-12-01  -0.7288912  0.6443765
+2022-12-01   0.6886403 -0.6002596
+2023-12-01  -0.4666554 -1.6679419
+2024-12-01   0.2159416 -1.0241288</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<p style="text-align: center;">
+Apply
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a>(monthly_stats <span class="ot">&lt;-</span> <span class="fu">lapply</span>(</span>
+<span id="cb72-2"><a href="#cb72-2"></a>  split_by_month,</span>
+<span id="cb72-3"><a href="#cb72-3"></a>  apply, <span class="dv">2</span>, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`1`
+Temperature    Humidity 
+  0.1098279   0.5943996 
+
+$`2`
+Temperature    Humidity 
+ -0.3902938   0.3143730 
+
+$`3`
+Temperature    Humidity 
+  0.3576020  -0.1470849 
+
+$`4`
+Temperature    Humidity 
+ 0.32035538  0.00474418 
+
+$`5`
+Temperature    Humidity 
+ -0.2497152  -0.8021570 
+
+$`6`
+Temperature    Humidity 
+ 0.43258955  0.08658806 
+
+$`7`
+Temperature    Humidity 
+  0.0195138   0.3791465 
+
+$`8`
+Temperature    Humidity 
+ 0.33050049  0.08322412 
+
+$`9`
+Temperature    Humidity 
+ -0.2400683   0.0641642 
+
+$`10`
+Temperature    Humidity 
+-0.06479965  0.22434506 
+
+$`11`
+Temperature    Humidity 
+  0.1481256  -0.2271295 
+
+$`12`
+Temperature    Humidity 
+ 0.01376981 -0.99142453 </code></pre>
+</div>
+</div>
+</div><div class="column" style="width:34%;">
+<p style="text-align: center;">
+Combine
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74" data-code-line-numbers="false"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>(combined_results <span class="ot">&lt;-</span> <span class="fu">do.call</span>(</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  rbind, monthly_stats))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Temperature    Humidity
+1   0.10982786  0.59439958
+2  -0.39029377  0.31437300
+3   0.35760201 -0.14708486
+4   0.32035538  0.00474418
+5  -0.24971523 -0.80215702
+6   0.43258955  0.08658806
+7   0.01951380  0.37914649
+8   0.33050049  0.08322412
+9  -0.24006834  0.06416420
+10 -0.06479965  0.22434506
+11  0.14812557 -0.22712951
+12  0.01376981 -0.99142453</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<p>Data Manipulation with xts <br> Averages for the same months/days/hours</p>
+</div>
+<!----------------------------------------------------------------------------->
+</section>
+
+<section id="using-split-apply-combineiv" class="title-slide slide level3 center">
+<h3>Using Split-Apply-Combine/IV</h3>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p style="text-align: center;">
+Split
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb76-2"><a href="#cb76-2"></a>(split_by_month <span class="ot">&lt;-</span> <span class="fu">split</span>(</span>
+<span id="cb76-3"><a href="#cb76-3"></a>  xts_data, lubridate<span class="sc">::</span><span class="fu">month</span>(xts_data)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p style="text-align: center;">
+Apply
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1"></a>(monthly_stats <span class="ot">&lt;-</span> <span class="fu">lapply</span>(</span>
+<span id="cb77-2"><a href="#cb77-2"></a>  split_by_month,</span>
+<span id="cb77-3"><a href="#cb77-3"></a>    <span class="cf">function</span>(x) {</span>
+<span id="cb77-4"><a href="#cb77-4"></a>    <span class="fu">apply</span>(x, <span class="dv">2</span>, quantile,</span>
+<span id="cb77-5"><a href="#cb77-5"></a>          <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>),</span>
+<span id="cb77-6"><a href="#cb77-6"></a>          <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb77-7"><a href="#cb77-7"></a>  }))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`1`
+    Temperature   Humidity
+25%  -0.5604756 -0.2204866
+50%   0.4007715  0.3796395
+75%   0.5539177  1.0057385
+
+$`2`
+    Temperature   Humidity
+25% -0.23017749 -0.5023235
+50% -0.08336907  0.3317820
+75% -0.06191171  0.9189966
+
+$`3`
+    Temperature   Humidity
+25%  -0.3059627 -0.5753470
+50%   0.2533185 -0.3332074
+75%   0.8377870 -0.2357004
+
+$`4`
+    Temperature   Humidity
+25% -0.02854676 -1.0185754
+50%  0.07050839  0.4351815
+75%  0.15337312  0.6079643
+
+$`5`
+    Temperature   Humidity
+25% -0.69470698 -1.0717912
+50% -0.04287046 -0.7104066
+75%  0.12928774 -0.3259316
+
+$`6`
+    Temperature    Humidity
+25%  -0.2079173 -0.05556197
+50%   1.2538149  0.25688371
+75%   1.3686023  0.30352864
+
+$`7`
+    Temperature  Humidity
+25%  -0.2257710 0.1813035
+50%   0.4264642 0.4482098
+75%   0.4609162 0.5194072
+
+$`8`
+    Temperature    Humidity
+25%  -0.4727914 -0.13889136
+50%  -0.2950715  0.05300423
+75%   1.5164706  0.30115336
+
+$`9`
+    Temperature    Humidity
+25%  -1.0678237 0.005764186
+50%  -0.6868529 0.105676194
+75%   0.8951257 0.238731735
+
+$`10`
+    Temperature    Humidity
+25%  -0.4456620 -0.62790608
+50%  -0.2179749 -0.04502772
+75%   0.5846137  0.38528040
+
+$`11`
+    Temperature   Humidity
+25%  -0.4028848 -0.7849045
+50%   0.1238542 -0.4910312
+75%   0.8215811 -0.3706600
+
+$`12`
+    Temperature   Humidity
+25%  -0.4666554 -1.6679419
+50%   0.2159416 -1.0241288
+75%   0.3598138 -0.6002596</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<p style="text-align: center;">
+Combine
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a>combined_results <span class="ot">&lt;-</span> <span class="fu">do.call</span>(</span>
+<span id="cb79-2"><a href="#cb79-2"></a>  rbind, monthly_stats)</span>
+<span id="cb79-3"><a href="#cb79-3"></a><span class="fu">class</span>(combined_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "matrix" "array" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a><span class="fu">print</span>(combined_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Temperature     Humidity
+25% -0.56047565 -0.220486562
+50%  0.40077145  0.379639483
+75%  0.55391765  1.005738524
+25% -0.23017749 -0.502323453
+50% -0.08336907  0.331781964
+75% -0.06191171  0.918996609
+25% -0.30596266 -0.575346963
+50%  0.25331851 -0.333207384
+75%  0.83778704 -0.235700359
+25% -0.02854676 -1.018575383
+50%  0.07050839  0.435181491
+75%  0.15337312  0.607964322
+25% -0.69470698 -1.071791226
+50% -0.04287046 -0.710406564
+75%  0.12928774 -0.325931586
+25% -0.20791728 -0.055561966
+50%  1.25381492  0.256883709
+75%  1.36860228  0.303528641
+25% -0.22577099  0.181303480
+50%  0.42646422  0.448209779
+75%  0.46091621  0.519407204
+25% -0.47279141 -0.138891362
+50% -0.29507148  0.053004227
+75%  1.51647060  0.301153362
+25% -1.06782371  0.005764186
+50% -0.68685285  0.105676194
+75%  0.89512566  0.238731735
+25% -0.44566197 -0.627906076
+50% -0.21797491 -0.045027725
+75%  0.58461375  0.385280401
+25% -0.40288484 -0.784904469
+50%  0.12385424 -0.491031166
+75%  0.82158108 -0.370660032
+25% -0.46665535 -1.667941937
+50%  0.21594157 -1.024128791
+75%  0.35981383 -0.600259587</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:34%;">
+<p style="text-align: center;">
+Organize
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1"></a>combined_results <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(combined_results)</span>
+<span id="cb83-2"><a href="#cb83-2"></a><span class="fu">rownames</span>(combined_results) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb83-3"><a href="#cb83-3"></a>combined_results <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
+<span id="cb83-4"><a href="#cb83-4"></a>  <span class="at">percentile =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">75</span>), <span class="fu">nrow</span>(combined_results) <span class="sc">/</span> <span class="dv">3</span>),</span>
+<span id="cb83-5"><a href="#cb83-5"></a>  <span class="at">month =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(month.abb, <span class="at">each =</span> <span class="dv">3</span>)),</span>
+<span id="cb83-6"><a href="#cb83-6"></a>  combined_results)</span>
+<span id="cb83-7"><a href="#cb83-7"></a><span class="fu">print</span>(combined_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   percentile month Temperature     Humidity
+1          25   Jan -0.56047565 -0.220486562
+2          50   Jan  0.40077145  0.379639483
+3          75   Jan  0.55391765  1.005738524
+4          25   Feb -0.23017749 -0.502323453
+5          50   Feb -0.08336907  0.331781964
+6          75   Feb -0.06191171  0.918996609
+7          25   Mar -0.30596266 -0.575346963
+8          50   Mar  0.25331851 -0.333207384
+9          75   Mar  0.83778704 -0.235700359
+10         25   Apr -0.02854676 -1.018575383
+11         50   Apr  0.07050839  0.435181491
+12         75   Apr  0.15337312  0.607964322
+13         25   May -0.69470698 -1.071791226
+14         50   May -0.04287046 -0.710406564
+15         75   May  0.12928774 -0.325931586
+16         25   Jun -0.20791728 -0.055561966
+17         50   Jun  1.25381492  0.256883709
+18         75   Jun  1.36860228  0.303528641
+19         25   Jul -0.22577099  0.181303480
+20         50   Jul  0.42646422  0.448209779
+21         75   Jul  0.46091621  0.519407204
+22         25   Aug -0.47279141 -0.138891362
+23         50   Aug -0.29507148  0.053004227
+24         75   Aug  1.51647060  0.301153362
+25         25   Sep -1.06782371  0.005764186
+26         50   Sep -0.68685285  0.105676194
+27         75   Sep  0.89512566  0.238731735
+28         25   Oct -0.44566197 -0.627906076
+29         50   Oct -0.21797491 -0.045027725
+30         75   Oct  0.58461375  0.385280401
+31         25   Nov -0.40288484 -0.784904469
+32         50   Nov  0.12385424 -0.491031166
+33         75   Nov  0.82158108 -0.370660032
+34         25   Dec -0.46665535 -1.667941937
+35         50   Dec  0.21594157 -1.024128791
+36         75   Dec  0.35981383 -0.600259587</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<p>Data Manipulation with xts <br> Averages for the same months/days/hours</p>
+</div>
+<div class="cell">
+<style type="text/css">
+.reveal div.sourceCode{
+  border: 2px solid #641E16;
+  background-color: #FFFFFF;
+  margin: 0.5em 0 0.5em 0;
+}
+</style>
+</div>
+
+<img src="../presentation_files/logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
+<p>Data Manipulation with xts</p>
+</div>
+</section>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../presentation_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../presentation_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../presentation_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../presentation_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../presentation_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../presentation_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../presentation_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="../presentation_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../presentation_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'smaller': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true,"boardmarkerWidth":5},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1500,
+
+        height: 1000,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

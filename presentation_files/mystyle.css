@@ -1,0 +1,50 @@
+/* .reveal div.sourceCode {
+  margin-top: 0.5em;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+} */
+
+/* .cell-output {
+  background-color: #7DCEA0;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  border: 1px solid #bbb;
+} */
+
+.reveal pre {
+  background-color: transparent;
+}
+.reveal pre code {
+  border: None;
+  background-color: transparent;
+  color: #222;
+  white-space: pre;
+}
+
+.reveal code {
+  margin-block-end: 0;
+  background-color: #F4ECF7;
+  padding: 0.2em;
+  border: 1px solid black;
+}
+
+.cell-output-stdout {
+  background-color: #EAFAF1;
+  border-radius: 3px;
+  border: 2px solid #7DCEA0;
+  border-radius: 3px;
+  margin-block-start: 0em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.cell-output-stderr {
+  background-color: #FADBD8;
+  border-radius: 3px;
+  border: 2px solid #C0392B;
+  border-radius: 3px;
+  margin-block-start: 0em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
