@@ -603,9 +603,9 @@ Ismail SEZEN
 <span id="cb18-15"><a href="#cb18-15"></a><span class="fu">microbenchmark</span>(<span class="fu">fib</span>(<span class="dv">30</span>, F), <span class="fu">fib2</span>(<span class="dv">30</span>, F))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
-        expr   min    lq     mean median     uq      max
-  fib(30, F) 2.009 2.091 25.25518  2.091 2.1525 2312.769
- fib2(30, F) 1.271 1.353  9.71659  1.394 1.4350  820.697
+        expr   min    lq     mean median    uq      max
+  fib(30, F) 2.009 2.091 23.53359 2.1115 2.173 2139.790
+ fib2(30, F) 1.312 1.353  9.45214 1.3940 1.476  793.022
  neval
    100
    100</code></pre>
@@ -682,8 +682,8 @@ Ismail SEZEN
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: nanoseconds
          expr  min   lq     mean median   uq     max neval
-  is.prime(x) 2091 2132 27053.85 2173.0 2214 2487962   100
- is.prime2(x)  574  656 21059.24  676.5  738 2032247   100</code></pre>
+  is.prime(x) 2091 2132 27043.60   2173 2255 2485502   100
+ is.prime2(x)  615  656 21315.49    697  738 2053403   100</code></pre>
 </div>
 </div>
 <div class="footer">
@@ -751,6 +751,8 @@ Ismail SEZEN
   <script src="../presentation_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="../presentation_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../presentation_files/libs/revealjs/plugin/multiplex/socket.io.js"></script>
+  <script src="../presentation_files/libs/revealjs/plugin/multiplex/multiplex.js"></script>
   <script src="../presentation_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -774,6 +776,7 @@ Ismail SEZEN
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true,"boardmarkerWidth":5},
+'multiplex': {"secret":null,"id":"b4298820b171ea18","url":"https://reveal-multiplex.glitch.me/"},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -947,7 +950,7 @@ Ismail SEZEN
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
-          RevealNotes,
+          
           RevealSearch,
           RevealZoom
         ]

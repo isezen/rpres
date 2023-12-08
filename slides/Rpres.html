@@ -2642,9 +2642,9 @@ Levels: Minor Young Adult Adult Senior Adult Elderly</code></pre>
 <span id="cb193-6"><a href="#cb193-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
-                expr min   lq mean median   uq  max neval
- classify_age1(ages)  13 14.0 15.8   14.4 15.0 1356 10000
- classify_age2(ages)  20 21.4 24.3   21.9 22.7 1602 10000</code></pre>
+                expr  min   lq mean median   uq  max neval
+ classify_age1(ages) 13.0 14.0   15   14.3 14.6 1288 10000
+ classify_age2(ages) 20.1 21.4   24   21.7 22.2 1399 10000</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb195"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb195-1"><a href="#cb195-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># Set seed for reproducibility</span></span>
 <span id="cb195-2"><a href="#cb195-2"></a>ages <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1000</span>, <span class="dv">0</span>, <span class="dv">100</span>)</span>
@@ -2655,9 +2655,9 @@ Levels: Minor Young Adult Adult Senior Adult Elderly</code></pre>
 <span id="cb195-7"><a href="#cb195-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
-                expr   min    lq  mean median    uq  max
- classify_age1(ages) 376.5 392.0 436.0    400 415.2 2994
- classify_age2(ages)  44.1  46.7  53.1     49  52.1 1230
+                expr   min    lq  mean median  uq  max
+ classify_age1(ages) 377.0 392.2 427.3  396.6 403 2739
+ classify_age2(ages)  47.7  49.4  53.5   50.6  53 1187
  neval
   1000
   1000</code></pre>
@@ -3044,8 +3044,8 @@ Levels: Minor Young Adult Adult Senior Adult Elderly</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
         expr  min   lq  mean median   uq  max neval
-  fib(30, F) 2.09 2.17 24.43   2.21 2.34 2144   100
- fib2(30, F) 1.35 1.39  9.52   1.48 1.60  784   100</code></pre>
+  fib(30, F) 2.01 2.09 23.87   2.09 2.13 2176   100
+ fib2(30, F) 1.31 1.35  9.37   1.39 1.39  791   100</code></pre>
 </div>
 </div>
 <div class="footer">
@@ -3119,8 +3119,8 @@ Levels: Minor Young Adult Adult Senior Adult Elderly</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: nanoseconds
          expr  min   lq  mean median   uq     max neval
-  is.prime(x) 2050 2091 26487   2132 2255 2431833   100
- is.prime2(x)  574  615 20769    656  697 1997110   100</code></pre>
+  is.prime(x) 2091 2132 26163   2234 2358 2375909   100
+ is.prime2(x)  615  656 24774    779  861 2383576   100</code></pre>
 </div>
 </div>
 <div class="footer">
@@ -5845,14 +5845,14 @@ $Izmir
 <pre><code>function(pm25, no2) {
     pm25 &gt; 35 &amp;&amp; no2 &gt; 50
 }
-&lt;bytecode: 0x1115cd388&gt;</code></pre>
+&lt;bytecode: 0x11d798358&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb367"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb367-1"><a href="#cb367-1"></a><span class="fu">print</span>(is_good_air_quality) <span class="co"># Negated function</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>function (...) 
 !f(...)
-&lt;bytecode: 0x1062570b8&gt;
-&lt;environment: 0x1113dcb58&gt;</code></pre>
+&lt;bytecode: 0x15aa0c958&gt;
+&lt;environment: 0x11e2ef140&gt;</code></pre>
 </div>
 </div>
 <div class="footer">
@@ -9094,6 +9094,8 @@ Wide format
   <script src="../presentation_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="../presentation_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../presentation_files/libs/revealjs/plugin/multiplex/socket.io.js"></script>
+  <script src="../presentation_files/libs/revealjs/plugin/multiplex/multiplex.js"></script>
   <script src="../presentation_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -9117,6 +9119,7 @@ Wide format
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true,"boardmarkerWidth":5},
+'multiplex': {"secret":null,"id":"f09f10169400018f","url":"https://reveal-multiplex.glitch.me/"},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -9290,7 +9293,7 @@ Wide format
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
-          RevealNotes,
+          
           RevealSearch,
           RevealZoom
         ]
