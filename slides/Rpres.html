@@ -443,6 +443,40 @@ Ismail SEZEN
 <!----------------------------------------------------------------------------->
 </section>
 
+<section id="homeworks-data" class="title-slide slide level1 center">
+<h1>Homeworks &amp; Data</h1>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Homeworks
+<ul>
+<li><a href="../homeworks/hw1.pdf">#1</a></li>
+<li><a href="../homeworks/hw2.pdf">#2</a></li>
+<li><a href="../homeworks/hw3.pdf">#3</a></li>
+<li><a href="../homeworks/hw4.pdf">#4</a></li>
+<li><a href="../homeworks/hw5.pdf">#5</a></li>
+<li><a href="../homeworks/hw6.pdf">#6</a></li>
+</ul></li>
+<li>Data
+<ul>
+<li><a href="../data/data.txt">data.txt</a></li>
+<li><a href="../data/pm10.csv">pm10.csv</a></li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Notes:</strong></p>
+<ul>
+<li>Please, email your answers privately to <strong>sezenismail at gmail com</strong>.</li>
+<li>Answers/codes should be in a text file named <code>hwX_your_full_name.py</code>.</li>
+<li>For each answer, write a comment line like <code># A1</code> and write your answer below.</li>
+<li>Write your conclusions as <code># R comments</code> in the text file.</li>
+<li>Do not use <code>for-loop</code> unless stated otherwise.</li>
+</ul>
+</div>
+</div>
+<!----------------------------------------------------------------------------->
+</section>
+
 <section id="preliminary" class="title-slide slide level1 center">
 <h1>Preliminary</h1>
 <p>R commands;</p>
@@ -2643,8 +2677,8 @@ Levels: Minor Young Adult Adult Senior Adult Elderly</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
                 expr  min   lq mean median   uq  max neval
- classify_age1(ages) 13.0 14.0   15   14.3 14.6 1288 10000
- classify_age2(ages) 20.1 21.4   24   21.7 22.2 1399 10000</code></pre>
+ classify_age1(ages) 12.9 14.1 15.9   14.5 14.9 1409 10000
+ classify_age2(ages) 20.3 21.7 24.2   22.1 22.7 1462 10000</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb195"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb195-1"><a href="#cb195-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># Set seed for reproducibility</span></span>
 <span id="cb195-2"><a href="#cb195-2"></a>ages <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1000</span>, <span class="dv">0</span>, <span class="dv">100</span>)</span>
@@ -2655,9 +2689,9 @@ Levels: Minor Young Adult Adult Senior Adult Elderly</code></pre>
 <span id="cb195-7"><a href="#cb195-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
-                expr   min    lq  mean median  uq  max
- classify_age1(ages) 377.0 392.2 427.3  396.6 403 2739
- classify_age2(ages)  47.7  49.4  53.5   50.6  53 1187
+                expr   min    lq  mean median    uq  max
+ classify_age1(ages) 377.0 395.5 437.7  401.5 411.9 3327
+ classify_age2(ages)  51.9  54.1  57.9   55.9  58.5  124
  neval
   1000
   1000</code></pre>
@@ -3044,8 +3078,8 @@ Levels: Minor Young Adult Adult Senior Adult Elderly</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
         expr  min   lq  mean median   uq  max neval
-  fib(30, F) 2.01 2.09 23.87   2.09 2.13 2176   100
- fib2(30, F) 1.31 1.35  9.37   1.39 1.39  791   100</code></pre>
+  fib(30, F) 2.05 2.09 24.18   2.17 2.25 2200   100
+ fib2(30, F) 1.27 1.39  9.53   1.48 1.54  799   100</code></pre>
 </div>
 </div>
 <div class="footer">
@@ -3119,8 +3153,8 @@ Levels: Minor Young Adult Adult Senior Adult Elderly</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: nanoseconds
          expr  min   lq  mean median   uq     max neval
-  is.prime(x) 2091 2132 26163   2234 2358 2375909   100
- is.prime2(x)  615  656 24774    779  861 2383576   100</code></pre>
+  is.prime(x) 2091 2132 28492   2234 2378 2616046   100
+ is.prime2(x)  615  656 22161    697  779 2111090   100</code></pre>
 </div>
 </div>
 <div class="footer">
@@ -5845,14 +5879,14 @@ $Izmir
 <pre><code>function(pm25, no2) {
     pm25 &gt; 35 &amp;&amp; no2 &gt; 50
 }
-&lt;bytecode: 0x11d798358&gt;</code></pre>
+&lt;bytecode: 0x1078cbe70&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb367"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb367-1"><a href="#cb367-1"></a><span class="fu">print</span>(is_good_air_quality) <span class="co"># Negated function</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>function (...) 
 !f(...)
-&lt;bytecode: 0x15aa0c958&gt;
-&lt;environment: 0x11e2ef140&gt;</code></pre>
+&lt;bytecode: 0x133152020&gt;
+&lt;environment: 0x1209f0368&gt;</code></pre>
 </div>
 </div>
 <div class="footer">
@@ -9119,7 +9153,7 @@ Wide format
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true,"boardmarkerWidth":5},
-'multiplex': {"secret":null,"id":"f09f10169400018f","url":"https://reveal-multiplex.glitch.me/"},
+'multiplex': {"secret":null,"id":"8c67619bee243a81","url":"https://reveal-multiplex.glitch.me/"},
 'smaller': false,
  
         // Display controls in the bottom right corner

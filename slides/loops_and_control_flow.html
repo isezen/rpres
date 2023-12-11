@@ -673,11 +673,11 @@ Levels: Minor Young Adult Adult Senior Adult Elderly</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
                 expr    min     lq     mean median     uq
- classify_age1(ages) 12.874 13.940 15.22093 14.309 14.760
- classify_age2(ages) 19.926 21.238 23.39344 21.689 22.427
+ classify_age1(ages) 12.997 13.981 15.70904 14.309 14.801
+ classify_age2(ages) 19.967 21.361 23.23301 21.812 22.591
       max neval
- 1017.538 10000
- 3566.631 10000</code></pre>
+ 3427.559 10000
+ 1241.029 10000</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># Set seed for reproducibility</span></span>
 <span id="cb24-2"><a href="#cb24-2"></a>ages <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1000</span>, <span class="dv">0</span>, <span class="dv">100</span>)</span>
@@ -688,12 +688,12 @@ Levels: Minor Young Adult Adult Senior Adult Elderly</code></pre>
 <span id="cb24-7"><a href="#cb24-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
-                expr     min      lq      mean   median
- classify_age1(ages) 377.241 392.288 420.43249 396.2855
- classify_age2(ages)  44.731  47.109  49.87539  48.5850
+                expr     min       lq      mean   median
+ classify_age1(ages) 375.109 394.5635 424.68263 401.4515
+ classify_age2(ages)  42.435  45.2230  51.40896  46.7605
       uq      max neval
- 406.802 3894.262  1000
-  50.840   98.277  1000</code></pre>
+ 413.362 4095.039  1000
+  49.815 1017.374  1000</code></pre>
 </div>
 </div>
 <div class="footer">
@@ -925,7 +925,7 @@ Levels: Minor Young Adult Adult Senior Adult Elderly</code></pre>
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true,"boardmarkerWidth":5},
-'multiplex': {"secret":null,"id":"c36592b4d9c0f3d7","url":"https://reveal-multiplex.glitch.me/"},
+'multiplex': {"secret":null,"id":"11c8105683ecb380","url":"https://reveal-multiplex.glitch.me/"},
 'smaller': false,
  
         // Display controls in the bottom right corner
